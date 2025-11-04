@@ -30,7 +30,6 @@
                     autofocus
                 >
             </div>
-        </div>
 
         {% include molecule('suggest-search') with {
             attributes: {
@@ -46,5 +45,6 @@
         } only %}
 
         <button type="submit" class="{{ config.name }}__button-hidden"></button>
+        </div>
     </form>
 {% endblock %}

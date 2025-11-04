@@ -1,5 +1,49 @@
 @mixin shop-ui-header($name: '.header') {
     #{$name} {
+        .top_header_custom__select {
+    position: relative;
+    display: inline-block;
+
+    .dropdown-toggle-custom {
+        background: transparent;
+        border: none;
+        font-weight: 600;
+        cursor: pointer;
+        padding: 0.5rem 1rem;
+    }
+
+    .dropdown-list-custom {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        background: #fff;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        min-width: 180px;
+        z-index: 10;
+
+        li {
+            list-style: none;
+            a {
+                display: block;
+                padding: 0.5rem 1rem;
+                text-decoration: none;
+                color: #333;
+
+                &:hover {
+                    background-color: #f5f5f5;
+                }
+            }
+        }
+    }
+
+    &:hover .dropdown-list-custom {
+        display: block;
+    }
+}
+
+
         position: relative;
         background-color: $setting-color-white;
         padding-top: rem(4);
@@ -94,7 +138,7 @@
             cursor: pointer;
 
             &::before {
-                content: '';
+                // content: '';
                 display: block;
                 width: rem(85);
                 height: rem(25);
@@ -104,7 +148,7 @@
         }
 
         &__search-open-icon {
-            margin-left: rem(10);
+            margin-left: rem(720);
             vertical-align: bottom;
         }
 
