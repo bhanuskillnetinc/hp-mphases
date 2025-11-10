@@ -3576,3 +3576,17 @@ sales_order_amendment_oms.mail.footer.text.line_2,Dein Spryker Shop,de_DE
 sales_order_amendment_oms.mail.footer.text.line_2,Your Spryker Shop,en_US
 sales_order_amendment_oms.error.apply_order_amendment_draft_failed,We could not process your order edit.,en_US
 sales_order_amendment_oms.error.apply_order_amendment_draft_failed,Ihre Bestelländerung konnte nicht bearbeitet werden.,de_DE
+footer.copyright,© 2025 HP. All rights reserved,en_US
+footer.copyright,© 2025 HP. All rights reserved,de_DE
+footer.legal.privacy.text,Privacy,en_US
+footer.legal.privacy.text,Privacy,de_DE
+footer.legal.sitemap.text,Site Map,en_US
+footer.legal.sitemap.text,Site Map,de_DE
+footer.legal.terms.text,Terms Of Use,en_US
+footer.legal.terms.text,Terms Of Use,de_DE
+footer.legal.submission.text,External Submission Policy,en_US
+footer.legal.submission.text,External Submission Policy,de_DE
+footer.legal.sales.text,Sales Terms and Conditions,en_US
+footer.legal.sales.text,Sales Terms and Conditions,de_DE
+footer.legal.trafficking.text,Anti-Slavery and Human Trafficking Statement,en_US
+footer.legal.trafficking.text,Anti-Slavery and Human Trafficking Statement,de_DE
