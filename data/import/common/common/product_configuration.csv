@@ -1,3 +1,4 @@
 concrete_sku,configurator_key,is_complete,default_configuration,default_display_data
 124_29866591,DATE_TIME_CONFIGURATOR,0,,
 124_31623088,DATE_TIME_CONFIGURATOR,0,,
+206_6429825,DATE_TIME_CONFIGURATOR,0,"{""data"":{""name"":""Toshiba CAMILEO S30"",""image"":""https://d2s0ynfc62ej12.cloudfront.net/b2c/6429825-4331.jpg"",""logo"":""./logo.svg""},""configuration"":[{""id"":""camera"",""label"":""Camera"",""data"":[{""value"":""1"",""title"":""Sony IMX 02"",""price"":16700},{""value"":""2"",""title"":""Sony IMX 04"",""price"":21000,""availableQuantity"":7}]}]}",

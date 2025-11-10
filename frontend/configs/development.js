@@ -102,6 +102,9 @@ const getConfiguration = async (appSettings) => {
 
             module: {
                 rules: [
+                    // =============================================
+                    // 🧩 TypeScript Loader
+                    // =============================================
                     {
                         test: /\.ts$/,
                         loader: 'babel-loader',
@@ -113,9 +116,7 @@ const getConfiguration = async (appSettings) => {
                                     {
                                         loose: true,
                                         modules: false,
-                                        targets: {
-                                            esmodules: true,
-                                        },
+                                        targets: { esmodules: true },
                                         useBuiltIns: false,
                                     },
                                 ],
@@ -123,17 +124,17 @@ const getConfiguration = async (appSettings) => {
                             ],
                             plugins: [
                                 ['@babel/plugin-transform-runtime'],
-                                [
-                                    '@babel/plugin-proposal-class-properties',
-                                    {
-                                        loose: true,
-                                    },
-                                ],
+                                ['@babel/plugin-proposal-class-properties', { loose: true }],
                             ],
                         },
                     },
+
+                    // =============================================
+                    // 🧩 Project SCSS (exclude Font Awesome)
+                    // =============================================
                     {
-                        test: /\.(scss|css)/i,
+                        test: /\.(scss|css)$/i,
+                        exclude: /@fortawesome[\\/]fontawesome-free/,
                         use: [
                             MiniCssExtractPlugin.loader,
                             {
@@ -163,6 +164,19 @@ const getConfiguration = async (appSettings) => {
                                     resources: [sharedScss, ...styles],
                                 },
                             },
+                        ],
+                    },
+
+                    // =============================================
+                    // 🧩 Font Awesome SCSS (handled separately)
+                    // =============================================
+                    {
+                        test: /@fortawesome[\\/]fontawesome-free[\\/].+\.scss$/,
+                        use: [
+                            MiniCssExtractPlugin.loader,
+                            'css-loader',
+                            'postcss-loader',
+                            'sass-loader',
                         ],
                     },
                 ],
