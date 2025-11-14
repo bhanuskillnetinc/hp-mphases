@@ -13,32 +13,33 @@
 } %}
 
 {% block body %}
-    {% set benefits = [
+{% set benefits = [
         'global.benefit.free_returns',
         'global.benefit.warranty',
         'global.benefit.competitive_prices'
     ] %}
 
-    {% widget 'AgentControlBarWidget' only %}{% endwidget %}
+{% widget 'AgentControlBarWidget' only %}{% endwidget %}
 
-    <div class="{{ config.name }}__top">
-        <div class="container grid grid--justify">
+<div class="{{ config.name }}__top">
+	<div
+		class="container grid grid--justify">
             {# {% include molecule('panel-info') with {
                 class: 'grid grid--justify',
                 data: {
-                    info: benefits,
+                info: benefits,
                 },
             } only %} #}
 
-            <div class="col {{ config.name }}__currency-lang">
+		<div class="col {{ config.name }}__currency-lang">
 
-                <div class="{{ config.name }}__select custom-switcher">
-                    {% set options = [
+			<div class="{{ config.name }}__select custom-switcher">
+				{% set options = [
                         { label: 'Register', value: url('register'), selected: false },
                         { label: 'Login', value: url('login'), selected: false },
                     ] %}
 
-                    {% include atom('select') with {
+				{% include atom('select') with {
                         modifiers: ['naked'],
                         data: {
                             options: options,
@@ -48,15 +49,15 @@
                             'data-dropdown': 'custom-switcher',
                         },
                     } only %}
-                </div>
+			</div>
 
-                <div class="{{ config.name }}__select custom-switcher2">
-                    {% set options = [
+			<div class="{{ config.name }}__select custom-switcher2">
+				{% set options = [
                         { label: 'Register', value: url('register'), selected: false },
                         { label: 'Login', value: url('login'), selected: false },
                     ] %}
 
-                    {% include atom('select') with {
+				{% include atom('select') with {
                         modifiers: ['naked'],
                         data: {
                             options: options,
@@ -66,11 +67,10 @@
                             'data-dropdown': 'custom-switcher',
                         },
                     } only %}
-                </div>
+			</div>
 
 
-
-                {% widget 'LanguageSwitcherWidget' args [
+			{% widget 'LanguageSwitcherWidget' args [
                     app.request.pathInfo,
                     app.request.queryString,
                     app.request.requestUri
@@ -82,14 +82,14 @@
                         parentConfigName: config.name,
                     },
                 } only %}
-                    {% block body %}
-                        <div class="{{ embed.parentConfigName }}__select">
-                            {{ parent () }}
-                        </div>
-                    {% endblock %}
-                {% endwidget %}
+			{% block body %}
+				<div class="{{ embed.parentConfigName }}__select">
+					{{ parent () }}
+				</div>
+			{% endblock %}
+			{% endwidget %}
 
-                {%- widget 'CurrencyWidget' with {
+			{%- widget 'CurrencyWidget' with {
                     data: {
                         additionalClassName: config.name,
                     },
@@ -97,14 +97,14 @@
                         parentConfigName: config.name,
                     },
                 } only %}
-                    {% block body %}
-                        <div class="{{ embed.parentConfigName }}__select">
-                            {{ parent () }}
-                        </div>
-                    {% endblock %}
-                {% endwidget %}
+			{% block body %}
+				<div class="{{ embed.parentConfigName }}__select">
+					{{ parent () }}
+				</div>
+			{% endblock %}
+			{% endwidget %}
 
-                {%- widget 'StoreSwitcher' with {
+			{%- widget 'StoreSwitcher' with {
                     data: {
                         additionalClassName: config.name,
                     },
@@ -112,30 +112,30 @@
                         parentConfigName: config.name,
                     },
                 } only %}
-                    {% block body %}
-                        <div class="{{ embed.parentConfigName }}__select">
-                            {{ parent () }}
-                        </div>
-                    {% endblock %}
-                {% endwidget %}
-            </div>
-        </div>
-    </div>
+			{% block body %}
+				<div class="{{ embed.parentConfigName }}__select">
+					{{ parent () }}
+				</div>
+			{% endblock %}
+			{% endwidget %}
+		</div>
+	</div>
+</div>
 
-    <div class="container">
-        <div class="{{ config.name }}__search-wrapper js-{{ config.name }}__search-wrapper">
-            <div class="{{ config.name }}__search">
-                <div class="{{ config.name }}__search-close js-{{ config.name }}__search-close">
-                    {% include atom('icon') with {
+<div class="container">
+	<div class="{{ config.name }}__search-wrapper js-{{ config.name }}__search-wrapper">
+		<div class="{{ config.name }}__search">
+			<div class="{{ config.name }}__search-close js-{{ config.name }}__search-close">
+				{% include atom('icon') with {
                         class: config.name ~ '__search-close-icon',
                         data: {
                             name: 'close',
                         },
                     } only %}
-                </div>
+			</div>
 
-                {% if data.showSearchForm %}
-                    {% include molecule('search-form') with {
+			{% if data.showSearchForm %}
+				{% include molecule('search-form') with {
                         attributes: {
                             'data-search-id': 'desktop',
                             'wrapper-class-name': 'js-' ~ config.name ~ '__search-wrapper',
@@ -144,64 +144,115 @@
                             'wrapper-toggle-class-name': config.name ~ '__search-wrapper-active',
                         },
                     } only %}
-                {% endif %}
-            </div>
-        </div>
+			{% endif %}
+		</div>
+	</div>
 
-        {% block additionalLink %}{% endblock %}
+	{% block additionalLink %}{% endblock %}
 
-        <div class="{{ config.name }}__row {{ config.name }}__navigation-top grid grid--middle grid--justify">
+	<div class="{{ config.name }}__row {{ config.name }}__navigation-top grid grid--middle grid--justify">
 
-            <div class="col col--sm col--lg">
-                {% include molecule('logo') with {
+		<div class="col col--sm col--lg logo-margin" style="margin-left: -42px;">
+			{% include molecule('logo') with {
                     modifiers: modifiers,
                     class: 'grid grid--center'
                 } only %}
-            </div>
+		</div>
 
-             <div class="col col--sm col--lg is-hidden-sm-md" style="width: 48rem;
-                padding: 10px;
-                border-: black;
-                border-radius: 16px;
-                border: solid;">
-                {% if data.showSearchForm %}
-                    <div class="{{ config.name }}__search-open js-{{ config.name }}__search-open">
-                        {% include atom('icon') with {
+		<div class="col col--sm col--lg is-hidden-sm-md category-search">
+			<div class="{{ config.name }}__select col col-sm-2 custom-switcher">
+				{% set options = [
+                        { label: 'All', value: 'all', selected: true },
+                        { label: 'Laptops', value: 'laptops', selected: false },
+                        { label: 'Desktops', value: 'desktops', selected: false },
+                        { label: 'Monitors', value: 'monitors', selected: false },
+                        { label: 'Workstations', value: 'workstations', selected: false },
+                        { label: 'Tablets', value: 'tablets', selected: false },
+                    ] %}
+
+				{% include atom('select') with {
+                        modifiers: ['naked'],
+                        data: {
+                            options: options,
+                        },
+                        attributes: {
+                            name: 'custom',
+                            'data-dropdown': 'custom-switcher',
+                        },
+                    } only %}
+			</div>
+
+			{% if data.showSearchForm %}
+				<div class="{{ config.name }}__search-open js-{{ config.name }}__search-open">
+					{% include atom('icon') with {
                             class: config.name ~ '__search-open-icon',
                             data: {
                                 name: 'search'
                             }
                         } only %}
-                    </div>
-                {% endif %}
-            </div>
+				</div>
+			{% endif %}
+		</div>
 
-            <div class="col col--lg is-hidden-sm-md">
-                {% if data.showNavigation %}
-                    {% include organism('navigation-top') with {
+
+		<div class="col col--lg is-hidden-sm-md">
+			{% if data.showNavigation %}
+				{% include organism('navigation-top') with {
                         data: {
                             isAjaxMode: data.isAjaxMode,
                             ajaxCartUrl: data.ajaxCartUrl,
                         },
                     } only %}
-                {% endif %}
-            </div>
+			{% endif %}
+		</div>
 
-        {# 2nd navigation should be there #}
+	</div>
+
+</div>
+	{# 2nd navigation should be there #}
+<div class="custom nav">
+
+<div class="lenovo-nav is-hidden-sm-md">
+    <div class="container lenovo-nav__container">
+        <div class="lenovo-nav__inner">
+
+            {# LEFT MAIN MENU #}
+            <ul class="lenovo-nav__left">
+                <li><a href="https://www.lenovo.com/in/en/pc/">Products</a></li>
+                <li><a href="https://www.lenovo.com/in/en/solutions/">Solutions</a></li>
+                <li><a href="https://www.lenovo.com/in/en/services/">Services</a></li>
+                <li><a href="https://www.lenovo.com/in/en/contact">Support</a></li>
+                <li><a href="https://www.lenovo.com/in/en/about">About Lenovo</a></li>
+                <li><a href="https://www.lenovo.com/in/en/d/deals/">Deals</a></li>
+            </ul>
+
+            {# RIGHT MAIN MENU #}
+            <ul class="lenovo-nav__right">
+                <li><a href="https://www.lenovo.com/in/en/gaming/shop/">Gaming</a></li>
+                <li><a href="https://www.lenovo.com/in/en/student/">Education</a></li>
+                <li><a href="https://www.lenovo.com/in/en/business/benefits/">Business</a></li>
+                <li><a href="https://www.lenovo.com/in/en/creator/store/">Creator</a></li>
+            </ul>
+
         </div>
+    </div>
+</div>
+
+
+</div>
         {% if data.showNavigation %}
             <div class="is-hidden-lg-xl">
                 <div class="{{ config.name }}__row {{ config.name }}__navigation-top">
                     {% include molecule('navigation-top-mobile') with {
-                        data: {
-                            isAjaxMode: data.isAjaxMode,
-                            ajaxCartUrl: data.ajaxCartUrl,
-                        },
-                    } only %}
+                                data: {
+                                    isAjaxMode: data.isAjaxMode,
+                                    ajaxCartUrl: data.ajaxCartUrl,
+                                },
+                            } only %}
                 </div>
             </div>
         {% endif %}
-    </div>
+
     {% if data.showNavigation %}
         <div class="{{ config.name }}__row {{ config.name }}__navigation-main is-hidden-sm-md">
             {% block mainNavigation %}
@@ -209,4 +260,14 @@
             {% endblock %}
         </div>
     {% endif %}
-{% endblock %}
+
+    {# {% if data.showNavigation %}
+		<div class="{{ config.name }}__row {{ config.name }}__navigation-main is-hidden-sm-md">
+			{% block mainNavigation %}
+				{% widget 'NavigationWidget' args ['CUSTOM_NAVIGATION', 'navigation-header'] %}{% endwidget %}
+			{% endblock %}
+		</div>
+	{% endif %} #}
+
+    {% endblock %}
+
