@@ -1,271 +1,252 @@
 @mixin shop-ui-header($name: '.header') {
-    .lenovo-nav {
-        background: #fff;
-        border-bottom: 1px solid #eee;
-    }
-
-    .lenovo-nav__container {
-        padding-left: 0 !important;
-        padding-right: 0 !important;
-    }
-
-    .lenovo-nav__inner {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 14px 0; // matches Lenovo exact spacing
-    }
-
-    .lenovo-nav__left {
-        display: flex;
-        align-items: center;
-        gap: 24px; // perfect distance like Lenovo
-        list-style: none;
-        margin: 0;
-        padding: 0;
-    }
-
-    .lenovo-nav__right {
-        display: flex;
-        align-items: center;
-        gap: 0px; // perfect distance like Lenovo
-        list-style: none;
-        margin: 0;
-        padding: 0;
-    }
-
-    .lenovo-nav__left li a,
-    .lenovo-nav__right li a {
-        font-size: 17px;
-        font-weight: 500;
-        color: #3a3a3a;
-        text-decoration: none;
-        padding-bottom: 6px;
-        display: inline-block;
-        transition: color .2s ease;
-        position: relative;
-    }
-
-    /* Hover underline (Lenovo red bar) */
-    .lenovo-nav__left li a:hover::after,
-    .lenovo-nav__right li a:hover::after {
-        content: '';
-        position: absolute;
-        left: 0;
-        bottom: -2px;
-        width: 100%;
-        height: 2px;
-        background-color: #c00; // Lenovo red
-    }
-
-    /* On hover change text color */
-    .lenovo-nav__left li a:hover,
-    .lenovo-nav__right li a:hover {
-        color: #000;
-    }
-
-    /* ------------------------------------------------------- */
-    /* RIGHT MENU PIPE SEPARATORS                             */
-    /* ------------------------------------------------------- */
-
-    .lenovo-nav__right li {
-        position: relative;
-        padding-right: 24px; // spacing before pipe
-    }
-
-    .lenovo-nav__right li::after {
-        content: '|';
-        position: absolute;
-        right: 8px;
-        top: 50%;
-        transform: translateY(-50%);
-        color: #999;
-        font-weight: 300;
-    }
-
-    /* Remove pipe from last item */
-    .lenovo-nav__right li:last-child::after {
-        content: '';
-    }
-
-    // -----------------------------------------------
-
-    /* ======================================
-   TOP PILL DROPDOWN SYSTEM
-   ====================================== */
-
-    .header__top-pill {
-        display: flex;
-        align-items: center;
-        // gap: 32px;
-    }
-
-    .header__pill-text {
-        font-size: 16px;
-        color: #000000;
-        padding-right: 5px;
-    }
-
-    /* Shared container for both dropdowns */
-    .header__top-pill-dropdown {
-        position: relative;
-        display: inline-flex;
-        align-items: center;
-        cursor: pointer;
-    }
-
-    /* JOIN link behaves like a dropdown trigger */
-    .header__top-pill-join .header__pill-link {
-        font-weight: 500;
-        color: #111;
-        text-decoration: none;
-        display: inline-flex;
-        align-items: center;
-        gap: 6px;
-        padding: 8px 4px;
-        position: relative;
-    }
-
-    /* Education pill-button (white box) */
-    .header__pill-button {
-        // background: #fff;
-        // border: 1px solid rgba(0, 0, 0, 0.06);
-        padding: 8px 14px;
-        border-radius: 2px;
-        display: inline-flex;
-        align-items: center;
-        gap: 6px;
-        font-size: 13px;
-        cursor: pointer;
-        color: #111;
-    }
-
-    /* small caret arrow */
-    .header__caret {
-        font-size: 12px;
-        transition: transform .2s ease;
-        color: #000000;
-
-    }
-
-    /* --- DROPDOWN PANEL (same for both Join + Education) --- */
-    .header__dropdown-menu {
-        display: none;
-        position: absolute;
-        // top: calc(100% + 8px);
-        top: 100%;
-        right: 0;
-        min-width: 220px;
-        background: #fff;
-        border-radius: 6px;
-        border: 1px solid rgba(0, 0, 0, 0.08);
-        box-shadow: 0 8px 18px rgba(0, 0, 0, 0.12);
-        padding: 14px 12px;
-        z-index: 1500;
-    }
-
-    /* Lenovo-style red bar on top */
-    .header__dropdown-menu::before {
-        content: "";
-        position: absolute;
-        // top: -8px;
-        top: -4px;
-        left: 12px;
-        right: 12px;
-        height: 4px;
-        background: #d62828;
-        border-radius: 4px 4px 0 0;
-    }
-
-    /* dropdown list */
-    .header__dropdown-list {
-        list-style: none;
-        padding: 0;
-        margin: 0;
-    }
-
-    .header__dropdown-list li {
-        margin: 0;
-    }
-
-    .header__dropdown-list a {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 8px 8px;
-        border-radius: 4px;
-        color: #111;
-        text-decoration: none;
-        font-weight: 600;
-        transition: background .15s ease;
-    }
-
-    .header__dropdown-list a:hover {
-        background: rgba(0, 0, 0, 0.04);
-    }
-
-    /* right-chevron */
-    .chev {
-        color: rgba(0, 0, 0, 0.45);
-        font-size: 16px;
-    }
-
-    /* --- Hover behavior for BOTH dropdowns --- */
-    .header__top-pill-dropdown:hover .header__dropdown-menu,
-    .header__top-pill-dropdown:focus-within .header__dropdown-menu {
-        display: block;
-    }
-
-    .header__top-pill-dropdown:hover .header__caret,
-    .header__top-pill-dropdown:focus-within .header__caret {
-        transform: rotate(180deg);
-        content: "\e91c";
-
-    }
-
-    /* Red underline under JOIN text when open */
-    .header__top-pill-join .header__pill-link::after {
-        content: "";
-        position: absolute;
-        left: 0;
-        right: 0;
-        bottom: -4px;
-        height: 3px;
-        background: transparent;
-        border-radius: 2px;
-        transition: background .15s;
-    }
-
-    /* Icon spacing */
-    .header__pill-icons {
-        display: flex;
-        align-items: center;
-        gap: 20px;
-    }
-
-    .header__icon-link {
-        display: inline-flex;
-        font-size: 18px;
-    }
-
-    .custom-nav {
-        margin: -7px;
-    }
-
-
 
     #{$name} {
 
-        .category-search {
+        &__lenovo-nav__inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 14px 0; // matches Lenovo exact spacing
+        }
+
+        &__lenovo-nav__left {
+            display: flex;
+            align-items: center;
+            gap: 24px; // perfect distance like Lenovo
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        &__lenovo-nav__right {
+            display: flex;
+            align-items: center;
+            gap: 0; // perfect distance like Lenovo
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        &__lenovo-nav__left li a,
+        &__lenovo-nav__right li a {
+            font-size: 17px;
+            font-weight: 500;
+            color: #3a3a3a;
+            text-decoration: none;
+            padding-bottom: 6px;
+            display: inline-block;
+            transition: color .2s ease;
+            position: relative;
+        }
+
+        /* Hover underline (Lenovo red bar) */
+        &__lenovo-nav__left li a:hover::after,
+        &__lenovo-nav__right li a:hover::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -2px;
+            width: 100%;
+            height: 2px;
+            background-color: #c00; // Lenovo red
+        }
+
+        /* On hover change text color */
+        &__lenovo-nav__left li a:hover,
+        &__lenovo-nav__right li a:hover {
+            color: #000;
+        }
+
+        &__lenovo-nav__right li {
+            position: relative;
+            padding-right: 24px; // spacing before pipe
+        }
+
+        &__lenovo-nav__right li::after {
+            content: '|';
+            position: absolute;
+            right: 8px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #999;
+            font-weight: 300;
+        }
+
+        /* Remove pipe from last item */
+        &__lenovo-nav__right li:last-child::after {
+            content: '';
+        }
+
+        &__lenovo-nav__container {
+            padding-left: 0 !important;
+            padding-right: 0 !important;
+        }
+
+        &__lenovo-nav {
+            background: #fff;
+            border-bottom: 1px solid #eee;
+        }
+
+        &__top-pill {
+            display: flex;
+            align-items: center;
+        }
+
+        &__pill-text {
+            font-size: 16px;
+            color: #000000;
+            padding-right: 5px;
+        }
+
+        /* Shared container for both dropdowns */
+        &__top-pill-dropdown {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        /* JOIN link behaves like a dropdown trigger */
+        &__top-pill-join &__pill-link {
+            font-weight: 500;
+            color: #111;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 4px;
+            position: relative;
+        }
+
+        /* Education pill-button (white box) */
+        &__pill-button {
+            padding: 8px 14px;
+            border-radius: 2px;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 13px;
+            cursor: pointer;
+            color: #111;
+        }
+
+        /* small caret arrow */
+        &__caret {
+            font-size: 12px;
+            transition: transform .2s ease;
+            color: #000000;
+
+        }
+
+        /* --- DROPDOWN PANEL --- */
+        &__dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            right: 0;
+            min-width: 220px;
+            background: #fff;
+            border-radius: 6px;
+            border: 1px solid rgb(0 0 0 / 8%);
+            box-shadow: 0 8px 18px rgb(0 0 0 / 12%);
+            padding: 14px 12px;
+            z-index: 1500;
+        }
+
+        /* Lenovo-style red bar on top */
+        &__dropdown-menu::before {
+            content: "";
+            position: absolute;
+            top: -4px;
+            left: 12px;
+            right: 12px;
+            height: 4px;
+            background: #d62828;
+            border-radius: 4px 4px 0 0;
+        }
+
+        /* dropdown list */
+        &__dropdown-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        &__dropdown-list li {
+            margin: 0;
+        }
+
+        &__dropdown-list a {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px;
+            border-radius: 4px;
+            color: #111;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background .15s ease;
+        }
+
+        &__dropdown-list a:hover {
+            background: rgb(0 0 0 / 4%);
+        }
+
+        /* --- Hover behavior for BOTH dropdowns --- */
+        &__top-pill-dropdown:hover &__dropdown-menu,
+        &__top-pill-dropdown:focus-within &__dropdown-menu {
+            display: block;
+        }
+
+        &__top-pill-dropdown:hover &__caret,
+        &__top-pill-dropdown:focus-within &__caret {
+            transform: rotate(180deg);
+            content: "\e91c";
+
+        }
+
+        /* Red underline under JOIN text when open */
+        &__top-pill-join &__pill-link::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: -4px;
+            height: 3px;
+            background: transparent;
+            border-radius: 2px;
+            transition: background .15s;
+        }
+
+        /* Icon spacing */
+        &__pill-icons {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        &__icon-link {
+            display: inline-flex;
+            font-size: 18px;
+        }
+
+        &__custom-nav {
+            margin: -7px;
+        }
+
+        &__logo-container {
+            margin-left: -42px !important;
+            margin-right: -58px !important;
+        }
+
+        &__category-search {
             display: flex;
             align-items: center;
             justify-content: flex-start;
             gap: 12px;
-
             width: 43rem;
-            padding: 0px 0px;
+            padding: 0;
             height: 46px;
-
             border: 2px solid #171717;
             border-radius: 12px;
             background-color: #fff;
@@ -275,8 +256,6 @@
                 flex: 0 0 auto;
                 width: auto !important;
                 max-width: none;
-                // padding: 0 !important;
-                // margin: 0 !important;
             }
 
             .category-search__placeholder {
@@ -311,7 +290,7 @@
                 justify-content: center;
                 flex: 0 0 auto;
                 width: auto;
-                padding: 0px 0px 0px 0px;
+                padding: 0;
                 margin: 0;
 
                 &::before {
@@ -325,52 +304,6 @@
                 }
             }
         }
-
-        .top_header_custom__select {
-            position: relative;
-            display: inline-block;
-
-            .dropdown-toggle-custom {
-                background: transparent;
-                border: none;
-                font-weight: 600;
-                cursor: pointer;
-                padding: 0.5rem 1rem;
-            }
-
-            .dropdown-list-custom {
-                display: none;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                background: #fff;
-                border: 1px solid #ddd;
-                border-radius: 4px;
-                min-width: 180px;
-                z-index: 10;
-
-                li {
-                    list-style: none;
-
-                    a {
-                        display: block;
-                        padding: 0.5rem 1rem;
-                        text-decoration: none;
-                        color: #333;
-
-                        &:hover {
-                            background-color: #f5f5f5;
-                        }
-                    }
-                }
-            }
-
-            &:hover .dropdown-list-custom {
-                display: block;
-            }
-        }
-
-
         position: relative;
         background-color: $setting-color-white;
         padding-top: rem(4);
