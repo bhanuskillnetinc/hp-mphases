@@ -24,104 +24,183 @@
 <div class="{{ config.name }}__top">
 	<div
 		class="container grid grid--justify">
-            {# {% include molecule('panel-info') with {
-                class: 'grid grid--justify',
-                data: {
-                info: benefits,
-                },
-            } only %} #}
+		{# {% include molecule('panel-info') with {
+								class: 'grid grid--justify',
+								data: {
+								info: benefits,
+								},
+								} only %} #}
 
-		<div class="col {{ config.name }}__currency-lang">
+		<div class="col {{ config.name }}__custom-dropdown">
+			{# place here top pill code #}
 
-			<div class="{{ config.name }}__select custom-switcher">
-				{% set options = [
-                        { label: 'Register', value: url('register'), selected: false },
-                        { label: 'Login', value: url('login'), selected: false },
-                    ] %}
+			{# ============================  TOP BAR (JOIN + EDUCATION) ============================ #}
 
-				{% include atom('select') with {
-                        modifiers: ['naked'],
-                        data: {
-                            options: options,
-                        },
-                        attributes: {
-                            name: 'custom-switcher',
-                            'data-dropdown': 'custom-switcher',
-                        },
-                    } only %}
+				<div
+				class="{{ config.name }}__top-pill grid grid--middle"> {#  ------------------------------------------- JOIN LENOVO PRO BUSINESS STORE (DROPDOWN) ------------------------------------------- #}
+				<div class="{{ config.name }}__top-pill-dropdown {{ config.name }}__top-pill-join" tabindex="0">
+
+					<a class="{{ config.name }}__pill-link" aria-haspopup="true" aria-expanded="false">
+						Join
+
+					</a>
+					<span class="{{ config.name }}__pill-text">
+						Lenovo Pro Business Store
+					</span>
+						<span class="{{ config.name }}__caret">
+							 {% include atom('icon') with
+                            {
+                            modifiers: ['small'],
+                            data: {
+                            name: 'arrow-right-thin'
+                            }
+                            } only %}
+
+					</span>
+
+					<div class="{{ config.name }}__dropdown-menu" role="menu">
+						<ul class="{{ config.name }}__dropdown-list">
+							<li role="menuitem">
+								<a href="{{ url('register') }}">Register ></a>
+							</li>
+							<li role="menuitem">
+								<a href="{{ url('login') }}">Log In ></a>
+							</li>
+							<li role="menuitem">
+								<a href="https://www.lenovo.com/in/en/business/benefits/">Learn More ></a>
+							</li>
+						</ul>
+					</div>
+
+				</div>
+
+				{# -------------------------
+				                        EDUCATION DROPDOWN
+				                ------------------------- #}
+
+				<div class="{{ config.name }}__top-pill-dropdown" tabindex="0">
+
+					<button class="{{ config.name }}__pill-button" aria-haspopup="true" aria-expanded="false">
+						Education
+						<span class="{{ config.name }}__caret">
+							{% include atom('icon') with {
+                    modifiers: ['small'],
+                    data: {
+                        name: 'arrow-right-thin'
+                    }
+                } only %}
+						</span>
+					</button>
+
+					<div class="{{ config.name }}__dropdown-menu" role="menu">
+						<ul class="{{ config.name }}__dropdown-list">
+							<li role="menuitem">
+								<a href="https://www.lenovo.com/in/en/student/#cc__steps">Sign Up Now >
+								</a>
+							</li>
+							<li role="menuitem">
+								<a href="https://www.lenovo.com/in/en/student/?IPromoID=LEN894819">Know More >
+								</a>
+							</li>
+							<li role="menuitem">
+								<a href="https://www.lenovo.com/in/en/d/students-offer/bestsellers/?IPromoID=LEN991931">Shop Now >
+								</a>
+							</li>
+						</ul>
+					</div>
+
+				</div>
+
+
+				{# -------------------------
+				            ICONS SECTION
+				            ------------------------- #}
+
+				<div class="{{ config.name }}__pill-icons grid grid--middle">
+
+					<a href="#" class="{{ config.name }}__icon-link">
+						<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-universal-access-circle" viewbox="0 0 16 16">
+							<path d="M8 4.143A1.071 1.071 0 1 0 8 2a1.071 1.071 0 0 0 0 2.143m-4.668 1.47 3.24.316v2.5l-.323 4.585A.383.383 0 0 0 7 13.14l.826-4.017c.045-.18.301-.18.346 0L9 13.139a.383.383 0 0 0 .752-.125L9.43 8.43v-2.5l3.239-.316a.38.38 0 0 0-.047-.756H3.379a.38.38 0 0 0-.047.756Z"/>
+							<path d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0M1 8a7 7 0 1 1 14 0A7 7 0 0 1 1 8"/>
+						</svg>
+					</a>
+
+					<a href="#" class="{{ config.name }}__icon-link">
+						<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-geo-alt" viewbox="0 0 16 16">
+							<path d="M12.166 8.94c-.524 1.062-1.234 2.12-1.96 3.07A32 32 0 0 1 8 14.58a32 32 0 0 1-2.206-2.57c-.726-.95-1.436-2.008-1.96-3.07C3.304 7.867 3 6.862 3 6a5 5 0 0 1 10 0c0 .862-.305 1.867-.834 2.94M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10"/>
+							<path d="M8 8a2 2 0 1 1 0-4 2 2 0 0 1 0 4m0 1a3 3 0 1 0 0-6 3 3 0 0 0 0 6"/>
+						</svg>
+					</a>
+
+					<a href="/wishlist" class="{{ config.name }}__icon-link">
+						<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-heart" viewbox="0 0 16 16">
+							<path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143q.09.083.176.171a3 3 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15"/>
+						</svg>
+					</a>
+
+					<a href="/support" class="{{ config.name }}__icon-link">
+						<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-headset" viewbox="0 0 16 16">
+							<path d="M8 1a5 5 0 0 0-5 5v1h1a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V6a6 6 0 1 1 12 0v6a2.5 2.5 0 0 1-2.5 2.5H9.366a1 1 0 0 1-.866.5h-1a1 1 0 1 1 0-2h1a1 1 0 0 1 .866.5H11.5A1.5 1.5 0 0 0 13 12h-1a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h1V6a5 5 0 0 0-5-5"/>
+						</svg>
+					</a>
+
+				</div>
+
 			</div>
 
-			<div class="{{ config.name }}__select custom-switcher2">
-				{% set options = [
-                        { label: 'Register', value: url('register'), selected: false },
-                        { label: 'Login', value: url('login'), selected: false },
-                    ] %}
-
-				{% include atom('select') with {
-                        modifiers: ['naked'],
-                        data: {
-                            options: options,
-                        },
-                        attributes: {
-                            name: 'custom-switcher',
-                            'data-dropdown': 'custom-switcher',
-                        },
-                    } only %}
-			</div>
-
-
-			{% widget 'LanguageSwitcherWidget' args [
-                    app.request.pathInfo,
-                    app.request.queryString,
-                    app.request.requestUri
-                ] with {
-                    data: {
-                        additionalClassName: config.name,
-                    },
-                    embed: {
-                        parentConfigName: config.name,
-                    },
-                } only %}
-			{% block body %}
-				<div class="{{ embed.parentConfigName }}__select">
-					{{ parent () }}
-				</div>
-			{% endblock %}
-			{% endwidget %}
-
-			{%- widget 'CurrencyWidget' with {
-                    data: {
-                        additionalClassName: config.name,
-                    },
-                    embed: {
-                        parentConfigName: config.name,
-                    },
-                } only %}
-			{% block body %}
-				<div class="{{ embed.parentConfigName }}__select">
-					{{ parent () }}
-				</div>
-			{% endblock %}
-			{% endwidget %}
-
-			{%- widget 'StoreSwitcher' with {
-                    data: {
-                        additionalClassName: config.name,
-                    },
-                    embed: {
-                        parentConfigName: config.name,
-                    },
-                } only %}
-			{% block body %}
-				<div class="{{ embed.parentConfigName }}__select">
-					{{ parent () }}
-				</div>
-			{% endblock %}
-			{% endwidget %}
 		</div>
+
+
+		{# {% widget 'LanguageSwitcherWidget' args [
+																						                    app.request.pathInfo,
+																						                    app.request.queryString,
+																						                    app.request.requestUri
+																						                ] with {
+																						                    data: {
+																						                        additionalClassName: config.name,
+																						                    },
+																						                    embed: {
+																						                        parentConfigName: config.name,
+																						                    },
+																						                } only %}
+																									{% block body %}
+																										<div class="{{ embed.parentConfigName }}__select">
+																											{{ parent () }}
+																										</div>
+																									{% endblock %}
+																									{% endwidget %} #}
+
+	{# {%- widget 'CurrencyWidget' with {
+														                    data: {
+														                        additionalClassName: config.name,
+														                    },
+														                    embed: {
+														                        parentConfigName: config.name,
+														                    },
+														                } only %}
+																	{% block body %}
+																		<div class="{{ embed.parentConfigName }}__select">
+																			{{ parent () }}
+																		</div>
+																	{% endblock %}
+																	{% endwidget %} #}
+
+		{# {%- widget 'StoreSwitcher' with {
+																						                    data: {
+																						                        additionalClassName: config.name,
+																						                    },
+																						                    embed: {
+																						                        parentConfigName: config.name,
+																						                    },
+																						                } only %}
+																									{% block body %}
+																										<div class="{{ embed.parentConfigName }}__select">
+																											{{ parent () }}
+																										</div>
+																									{% endblock %}
+																									{% endwidget %} #}
 	</div>
 </div>
-
 <div class="container">
 	<div class="{{ config.name }}__search-wrapper js-{{ config.name }}__search-wrapper">
 		<div class="{{ config.name }}__search">
@@ -152,7 +231,7 @@
 
 	<div class="{{ config.name }}__row {{ config.name }}__navigation-top grid grid--middle grid--justify">
 
-		<div class="col col--sm col--lg logo-margin" style="margin-left: -42px;">
+		<div class="col col--sm col--lg logo-margin" style="margin-left: -42px; margin-right: -58px;">
 			{% include molecule('logo') with {
                     modifiers: modifiers,
                     class: 'grid grid--center'
@@ -160,7 +239,7 @@
 		</div>
 
 		<div class="col col--sm col--lg is-hidden-sm-md category-search">
-			<div class="{{ config.name }}__select col col-sm-2 custom-switcher">
+			<div class="{{ config.name }}__select col col-sm-2 custom-switcher-category">
 				{% set options = [
                         { label: 'All', value: 'all', selected: true },
                         { label: 'Laptops', value: 'laptops', selected: false },
@@ -183,7 +262,11 @@
 			</div>
 
 			{% if data.showSearchForm %}
+            
 				<div class="{{ config.name }}__search-open js-{{ config.name }}__search-open">
+                <span class="category-search__placeholder">
+            What are you looking for today?
+        </span>
 					{% include atom('icon') with {
                             class: config.name ~ '__search-open-icon',
                             data: {
@@ -207,67 +290,79 @@
 		</div>
 
 	</div>
+</div>{# 2nd navigation should be there #}<div class="custom-nav">
 
+	<div class="lenovo-nav is-hidden-sm-md">
+		<div class="container lenovo-nav__container">
+			<div
+				class="lenovo-nav__inner">
+
+				{# LEFT MAIN MENU #}
+				<ul class="lenovo-nav__left">
+					<li>
+						<a href="https://www.lenovo.com/in/en/pc/">Products</a>
+					</li>
+					<li>
+						<a href="https://www.lenovo.com/in/en/solutions/">Solutions</a>
+					</li>
+					<li>
+						<a href="https://www.lenovo.com/in/en/services/">Services</a>
+					</li>
+					<li>
+						<a href="https://www.lenovo.com/in/en/contact">Support</a>
+					</li>
+					<li>
+						<a href="https://www.lenovo.com/in/en/about">About Lenovo</a>
+					</li>
+					<li>
+						<a href="https://www.lenovo.com/in/en/d/deals/">Deals</a>
+					</li>
+				</ul>
+
+				{# RIGHT MAIN MENU #}
+				<ul class="lenovo-nav__right">
+					<li>
+						<a href="https://www.lenovo.com/in/en/gaming/shop/">Gaming</a>
+					</li>
+					<li>
+						<a href="https://www.lenovo.com/in/en/student/">Education</a>
+					</li>
+					<li>
+						<a href="https://www.lenovo.com/in/en/business/benefits/">Business</a>
+					</li>
+					<li>
+						<a href="https://www.lenovo.com/in/en/creator/store/">Creator</a>
+					</li>
+				</ul>
+
+			</div>
+		</div>
+	</div>
 </div>
-	{# 2nd navigation should be there #}
-<div class="custom nav">
-
-<div class="lenovo-nav is-hidden-sm-md">
-    <div class="container lenovo-nav__container">
-        <div class="lenovo-nav__inner">
-
-            {# LEFT MAIN MENU #}
-            <ul class="lenovo-nav__left">
-                <li><a href="https://www.lenovo.com/in/en/pc/">Products</a></li>
-                <li><a href="https://www.lenovo.com/in/en/solutions/">Solutions</a></li>
-                <li><a href="https://www.lenovo.com/in/en/services/">Services</a></li>
-                <li><a href="https://www.lenovo.com/in/en/contact">Support</a></li>
-                <li><a href="https://www.lenovo.com/in/en/about">About Lenovo</a></li>
-                <li><a href="https://www.lenovo.com/in/en/d/deals/">Deals</a></li>
-            </ul>
-
-            {# RIGHT MAIN MENU #}
-            <ul class="lenovo-nav__right">
-                <li><a href="https://www.lenovo.com/in/en/gaming/shop/">Gaming</a></li>
-                <li><a href="https://www.lenovo.com/in/en/student/">Education</a></li>
-                <li><a href="https://www.lenovo.com/in/en/business/benefits/">Business</a></li>
-                <li><a href="https://www.lenovo.com/in/en/creator/store/">Creator</a></li>
-            </ul>
-
-        </div>
-    </div>
-</div>
-
-
-</div>
-        {% if data.showNavigation %}
-            <div class="is-hidden-lg-xl">
-                <div class="{{ config.name }}__row {{ config.name }}__navigation-top">
-                    {% include molecule('navigation-top-mobile') with {
+{% if data.showNavigation %}
+	<div class="is-hidden-lg-xl">
+		<div class="{{ config.name }}__row {{ config.name }}__navigation-top">
+			{% include molecule('navigation-top-mobile') with {
                                 data: {
                                     isAjaxMode: data.isAjaxMode,
                                     ajaxCartUrl: data.ajaxCartUrl,
                                 },
                             } only %}
-                </div>
-            </div>
-        {% endif %}
-
-    {% if data.showNavigation %}
-        <div class="{{ config.name }}__row {{ config.name }}__navigation-main is-hidden-sm-md">
-            {% block mainNavigation %}
-                {% widget 'NavigationWidget' args ['MAIN_NAVIGATION_DESKTOP', 'navigation-header'] %}{% endwidget %}
-            {% endblock %}
-        </div>
-    {% endif %}
-
-    {# {% if data.showNavigation %}
+		</div>
+	</div>
+{% endif %}
+{% if data.showNavigation %}
+	<div class="{{ config.name }}__row {{ config.name }}__navigation-main is-hidden-sm-md">
+		{% block mainNavigation %}
+			{% widget 'NavigationWidget' args ['MAIN_NAVIGATION_DESKTOP', 'navigation-header'] %}{% endwidget %}
+		{% endblock %}
+	</div>
+{% endif %}
+{# {% if data.showNavigation %}
 		<div class="{{ config.name }}__row {{ config.name }}__navigation-main is-hidden-sm-md">
 			{% block mainNavigation %}
 				{% widget 'NavigationWidget' args ['CUSTOM_NAVIGATION', 'navigation-header'] %}{% endwidget %}
 			{% endblock %}
 		</div>
-	{% endif %} #}
-
-    {% endblock %}
+	{% endif %} #}{% endblock %}
 
