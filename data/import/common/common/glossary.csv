@@ -1043,13 +1043,13 @@ customer.account.wishlist.overview.sku,Sku,de_DE
 customer.account.wishlist.overview.name,Name,de_DE
 customer.account.wishlist.overview.price,Preis,de_DE
 customer.account.wishlist.overview.variant,Produktvariante,de_DE
-customer.account.wishlist.overview.title,Manage wishlists,en_US
+customer.account.wishlist.overview.title,My Wish List,en_US
 customer.account.wishlist.overview.title,Wunschliste verwalten,de_DE
 customer.account.wishlist.overview.empty,You do not have any lists yet.,en_US
 customer.account.wishlist.overview.empty,Du hast noch keine Wunschlisten.,de_DE
 customer.account.wishlist.overview.enter_name,Enter name here,en_US
 customer.account.wishlist.overview.enter_name,Name hier eingeben,de_DE
-customer.account.wishlist.overview.add_new,Add new wishlist,en_US
+customer.account.wishlist.overview.add_new,Create a List,en_US
 customer.account.wishlist.overview.add_new,Neue Liste hinzufügen,de_DE
 customer.account.wishlist.overview.item_count,# of items,en_US
 customer.account.wishlist.overview.item_count,# Produkte,de_DE

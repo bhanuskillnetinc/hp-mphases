@@ -1,4 +1,4 @@
-{% extends template('page-layout-wishlist', 'WishlistPage') %}
+{% extends template('page-layout-main', 'ShopUi') %}
 
 {% define data = {
     wishlists: _view.wishlistOverview.meta.wishlistCollection.wishlists,
@@ -20,20 +20,61 @@
     },
 } %}
 
-{% block customerContent %}
-    <div class="box">
-        {% include molecule('title-box', 'CustomerPage') with {
-            data: {
-                title: data.wishlistName,
-            },
-        } only %}
+{% block pageInfo %}{% endblock %}
 
-        {% if data.wishlistItems is empty %}
-            <div class="text-center">
-                <span class="title title--h6">{{ 'customer.account.wishlist.empty' | trans }}</span>
-            </div>
-        {% else %}
-            {% include molecule('wishlist-detail-table', 'WishlistPage') with {
+{% block content %}
+	<div class="list-header mt-4">
+		<h1 class="list-header__title">{{ data.wishlistName }}</h1>
+
+		<div class="list-header__main">
+			<div class="list-header__meta">
+				<span class="list-header__items">{{ _view.wishlistOverview.wishlist.numberOfItems }}
+					Items</span>
+				<span class="list-header__updated">Updated
+					{{ _view.wishlistOverview.wishlist.updatedAt | formatDate }}</span>
+				<span class="list-header__public">
+					<i class="fa fa-eye"></i>
+					Public
+				</span>
+				<span class="list-header__setting">
+					<i class="fa fa-cog"></i>
+					Setting
+				</span>
+			</div>
+			<div class="list-header__controls">
+				<span class="list-header__share">
+					<i class="fa fa-envelope"></i>
+					Share List
+				</span>
+			</div>
+		</div>
+		<div class="list-header__toolbar">
+			<div class="list-header__search">
+				<input type="text" class="list-header__search-input" placeholder="Search List"/>
+				<button class="list-header__search-btn">
+					<i class="fa fa-search"></i>
+				</button>
+			</div>
+			<div class="list-header__sort">
+				<label class="list-header__sort-label">Sort By</label>
+				<select class="list-header__sort-select">
+					<option>Newest</option>
+					<option>Oldest</option>
+				</select>
+			</div>
+		</div>
+	</div>
+	<div class="box">
+		<a href="{{ url('wishlist/overview') }}" class="back-to-my-list" tabindex="0">
+			<span class="back-icon"><</span>
+			<span class="back-msg">Return to My Lists</span>
+		</a>
+		{% if data.wishlistItems is empty %}
+			<div class="text-center">
+				<span class="title title--h6">{{ 'customer.account.wishlist.empty' | trans }}</span>
+			</div>
+		{% else %}
+			{% include molecule('wishlist-detail-table', 'WishlistPage') with {
                 data: {
                     wishlistItems: data.wishlistItems,
                     wishlistName: data.wishlistName,
@@ -43,32 +84,32 @@
                 },
             } only %}
 
-            {% include molecule('pagination') with {
+			{% include molecule('pagination') with {
                 data: data.pagination,
             } only %}
-        {% endif %}
-    </div>
+		{% endif %}
+	</div>
 
-    <div class="box">
-        <div class="grid grid--right">
-            <div class="col col--expand text-right">
-                {% if data.wishlistItems is not empty %}
-                    {{ form_start(data.addAllProductsToCart, {
+	<div class="box">
+		<div class="grid grid--right">
+			<div class="col col--expand text-right">
+				{% if data.wishlistItems is not empty %}
+					{{ form_start(data.addAllProductsToCart, {
                         action: path('wishlist/move-all-available-to-cart', { wishlistName: data.wishlistName }),
                         attr: { class: '' },
                     }) }}
 
-                    <button type="submit" class="button button--expand-mobile">
-                        {{ 'customer.account.wishlist.add_all_available_to_cart' | trans }}
-                    </button>
+					<button type="submit" class="button button--expand-mobile">
+						{{ 'customer.account.wishlist.add_all_available_to_cart' | trans }}
+					</button>
 
-                    {% for wishlistItemMetaField in data.addAllProductsToCart.wishlistItemMetaCollection %}
-                        {{ form_widget(wishlistItemMetaField) }}
-                    {% endfor %}
+					{% for wishlistItemMetaField in data.addAllProductsToCart.wishlistItemMetaCollection %}
+						{{ form_widget(wishlistItemMetaField) }}
+					{% endfor %}
 
-                    {{ form_end(data.addAllProductsToCart) }}
-                {% endif %}
-            </div>
-        </div>
-    </div>
+					{{ form_end(data.addAllProductsToCart) }}
+				{% endif %}
+			</div>
+		</div>
+	</div>
 {% endblock %}

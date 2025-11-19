@@ -1,0 +1,130 @@
+@mixin shop-ui-wishlist-overview-table($name: '.wishlist-overview-table') {
+
+    #{$name} {
+
+        @content;
+    }
+
+    .lists {
+        &__title {
+            font-size: 34px;
+            font: 24px / 28px Lato;
+            margin-bottom: 25px;
+        }
+
+        &__grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        &__card {
+            background: #fff;
+            border: 1px solid #e5e5e5;
+            border-radius: 16px;
+            padding: 20px;
+            transition: box-shadow 0.2s ease;
+
+            &:hover {
+                box-shadow: 0 4px 18px rgba(0, 0, 0, 0.08);
+            }
+        }
+
+        /* Header */
+        &__card-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 16px;
+        }
+
+        &__card-title {
+            font-size: 22px;
+            font-weight: 600;
+            margin: 0;
+        }
+
+        &__settings-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 20px;
+            padding: 0;
+            color: #4a4a4a;
+
+            &:hover {
+                color: #1a1a1a;
+            }
+        }
+
+        /* Preview grey boxes */
+        &__card-preview {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-auto-rows: 60px;
+            gap: 8px;
+            margin-bottom: 18px;
+        }
+
+        &__preview-box {
+            background: #f4f4f4;
+            border-radius: 6px;
+        }
+
+        /* Footer */
+        &__card-footer {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            font-size: 14px;
+            flex-wrap: wrap;
+
+            i {
+                margin-right: 4px;
+            }
+        }
+
+        &__item-count {
+            color: #000;
+            font-weight: 600;
+        }
+
+        /* Privacy States */
+        &__privacy--private {
+            color: #111;
+        }
+
+        &__privacy--public {
+            color: #111;
+        }
+
+        &__share-btn {
+            background: none;
+            border: none;
+            font-size: 14px;
+            cursor: pointer;
+            padding: 0;
+            color: #111;
+
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+    }
+
+    /* Tablet */
+    @media (max-width: 992px) {
+        .lists__grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+
+    /* Mobile */
+    @media (max-width: 576px) {
+        .lists__grid {
+            grid-template-columns: 1fr;
+        }
+    }
+
+}
+
+@include shop-ui-wishlist-overview-table();
