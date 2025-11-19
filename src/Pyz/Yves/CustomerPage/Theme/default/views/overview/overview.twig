@@ -1,119 +1,59 @@
-{% extends view('overview', '@SprykerShop:CustomerPage') %}
+{# {% extends view('overview', '@SprykerShop:CustomerPage') %} #}
 
-{% block customerContent %}
-    <div class="box">
-        {% embed molecule('title-box', 'CustomerPage') with {
-            data: {
-                title: 'customer.account.last_orders' | trans,
-            },
-            embed: {
-                orders: data.orders,
-            },
-        } only %}
-            {% block additionalContent %}
-                {% if embed.orders is not empty %}
-                    <a href="{{url('customer/order')}}" class="col">
-                        {{ 'customer.order.view_all' | trans }}
-                    </a>
-                {% endif %}
-            {% endblock %}
-        {% endembed %}
+{% extends template('page-layout-main') %}
+{% define data = {
+    activePage: 'overview',
+    orders: _view.orderList,
+    ordersAggregatedItemStateDisplayNames: _view.ordersAggregatedItemStateDisplayNames | default([]),
+    customer: _view.customer,
+    billingAddress: _view.addresses.billing | default,
+    shippingAddress: _view.addresses.shipping | default,
+    billingAddressId: _view.addresses.billing.idCustomerAddress | default(''),
+    shippingAddressId: _view.addresses.shipping.idCustomerAddress | default(''),
+    title: 'My Account' | trans,
+    cards: [
+        { url: url('customer/profile'), title: 'My Saved Carts', description: 'Saved items for purchase or review', image: '//p2-ofp.static.pub/fes/cms/2021/04/29/5gr68e3smc6810f69d1zabfmu057ah500826.jpg' },
+        { url: url('customer/address'), title: 'My Address', description: 'Edit location preferences for shipping and billing', image: '//p4-ofp.static.pub/fes/cms/2021/04/29/w6am4hwabhtfor41ozc9k9uubf7m4l395879.jpg' },
+        { url: "/wishlist", title: 'My Wishlist', description: 'Navigate to your created wishlists with special Products', image: '//p4-ofp.static.pub//fes/cms/2024/01/31/m8r4zhmg2lnjek85a17bvtqq3yjrqq778774.svg' },
+        { url: url('customer/address'), title: 'My Saved Quotes', description: 'Review price quote for saved products', image: '//p4-ofp.static.pub/fes/cms/2021/04/29/w6am4hwabhtfor41ozc9k9uubf7m4l395879.jpg' },
+        { url: url('customer/order'), title: 'My Orders', description: 'View buying history, track items or returns', image: '//p2-ofp.static.pub/fes/cms/2021/04/29/ejptch2ogofwbswevlhm462f1gh64l395122.jpg' },
+        { url: url('customer/profile'), title: 'My Profile', description: 'Edit name, password, and account settings', image: '//p2-ofp.static.pub/fes/cms/2021/04/29/k41zlw1db0j8c56i524xqtleqdf0d5964889.jpg' },
+        { url: url('customer/address'), title: '', description: 'Manage your devices, accessories and other items', image: '//p4-ofp.static.pub/fes/cms/2023/02/17/78bbf6kdp9mds7u992c41f8ee78wmv018937.jpg' },
+        { url: url('customer/address'), title: 'My Rewards', description: 'Edit location preferences for shipping and billing', image: '//p3-ofp.static.pub/fes/cms/2021/04/29/u65gxqm0o66snq6gvxj2yqcdb5s92k732843.jpg' },
+    ]
+} %}
+{# {% set contentSectionId = 'customer-content' %} #}
 
-        {% include molecule('order-table', 'CustomerPage') with {
-            data: {
-                orders: data.orders,
-                ordersAggregatedItemStateDisplayNames: data.ordersAggregatedItemStateDisplayNames,
-            },
-        } only %}
+{% block breadcrumbs %}
 
-    </div>
-
-    <div class="grid grid--justify">
-        <div class="col--lg-6 col--sm-12">
-            <div class="box">
-                {% embed molecule('title-box', 'CustomerPage') with {
-                    data: {
-                        title: 'customer.account.profile_data' | trans
-                    }
-                } only %}
-                    {% block additionalContent %}
-                        <a href="{{url('customer/profile')}}" class="col">
-                            {{ 'general.edit.button' | trans }}
-                        </a>
-                    {% endblock %}
-                {% endembed %}
-
-                <ul class="menu menu--customer-account">
-                    <li class="menu__item">{{ data.customer.firstName }} {{ data.customer.lastName }}</li>
-                    <li class="menu__item"><a class="menu__link" href="mailto:{{ data.customer.email }}">{{ data.customer.email }}</a></li>
-                </ul>
-            </div>
-        </div>
-
-        <div class="col--lg-6 col--sm-12">
-            <div class="box">
-                {% widget 'NewsletterSubscriptionSummaryWidget' args [data.customer] only %}{% endwidget %}
-            </div>
-        </div>
-
-        <div class="col--lg-6 col--sm-12">
-            {% if data.billingAddress is not empty %}
-                <div class="box">
-                    {% embed molecule('title-box', 'CustomerPage') with {
-                        data: {
-                            title: 'customer.account.default_billing_address' | trans
-                        },
-                        embed: {
-                            billingAddressId: data.billingAddressId
-                        }
-                    } only %}
-                        {% block additionalContent %}
-                            <a href="{{ url('customer/address/update', { id: embed.billingAddressId }) }}" class="col">
-                                {{ 'general.edit.button' | trans }}
-                            </a>
-                        {% endblock %}
-                    {% endembed %}
-
-                    {% include molecule('display-address') with {
-                        class: 'menu menu--customer-account',
-                        data: {
-                            address: data.billingAddress,
-                            showAddressLabel: true,
-                        },
-                    } only %}
-
-                </div>
-            {% endif %}
-        </div>
-
-        <div class="col--lg-6 col--sm-12">
-            {% if data.shippingAddress is not empty %}
-                <div class="box">
-                    {% embed molecule('title-box', 'CustomerPage') with {
-                        data: {
-                            title: 'customer.account.default_shipping_address' | trans
-                        },
-                        embed: {
-                            shippingAddressId: data.shippingAddressId
-                        }
-                    } only %}
-                        {% block additionalContent %}
-                            <a href="{{ url('customer/address/update', { id: embed.shippingAddressId }) }}" class="col">
-                                {{ 'general.edit.button' | trans }}
-                            </a>
-                        {% endblock %}
-                    {% endembed %}
-
-                    {% include molecule('display-address') with {
-                        class: 'menu menu--customer-account',
-                        data: {
-                            address: data.shippingAddress,
-                            showAddressLabel: true,
-                        },
-                    } only %}
-
-                </div>
-            {% endif %}
-        </div>
-    </div>
 {% endblock %}
+{% block title %}
+
+{% endblock %}
+{% block content %}
+	<div class="box page-layout-main__customer-overview-box">
+    <h2 class="page-layout-main__customer-overview-title title title--medium">My Account</h2>
+		{% include molecule('customer-profile-card', 'CustomerPage') with {
+    data: {
+        customer: data.customer,
+        points: 0,
+        expiry: 12,
+        memberSince: 2023,
+    }
+} only %}
+		<div class="grid grid--justify">
+			{% for card in data.cards %}
+				<div class="col--lg-3 col--sm-6">
+					{% include molecule('customer-dashboard-card', 'CustomerPage') with {
+                data: card
+            } only %}
+				</div>
+			{% endfor %}
+		</div>
+        <main>
+                {% cms_slot 'slt-3' %}
+        </main>
+	</div>
+{% endblock %}
+
+{% block footer %}{% endblock %}

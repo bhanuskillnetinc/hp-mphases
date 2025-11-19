@@ -1,0 +1,47 @@
+{% extends model('component') %}
+
+{% define config = {
+    name: 'customer-profile-card'
+} %}
+
+{% define data = {
+    customer: required,
+    points: 0,
+    expiry: '12',
+    memberSince: '2023',
+    initials: (data.customer.firstName|first ~ data.customer.lastName|first)|upper
+} %}
+
+{% block class %}
+    {{ parent() }} customer-profile-card grid grid--justify grid--middle
+{% endblock %}
+
+{% block body %}
+    <div class="customer-profile-card__body grid grid--justify">
+        <div class="customer-profile-card__section col--lg-6 col--sm-12 grid grid--middle">
+            <div class="customer-profile-card__avatar">{{ data.initials }}</div>
+            <div class="customer-profile-card__name">
+                <h3>{{ data.customer.firstName }} {{ data.customer.lastName }}</h3>
+            </div>
+        </div>
+
+        <div class="customer-profile-card__section col--lg-6 col--sm-12 grid grid--justify">
+            <div class="customer-profile-card__divider d-none d-md-block"></div>
+            <ul class="customer-profile-card__details list-unstyled mb-0 col--lg-6 col--sm-12">
+                <li class="fw-semibold">
+                    Available Points:
+                    <span class="text-primary">{{ data.points }}</span>
+                </li>
+                <li class="text-muted">
+                    Points expire in <strong>{{ data.expiry }}</strong>
+                </li>
+                <li class="text-muted">
+                    Rewards Member Since <strong>{{ data.memberSince }}</strong>
+                </li>
+            </ul>
+            <div class="customer-profile-card__points col--lg-5 col--sm-12">
+                <h1>{{ data.points }}</h1>
+            </div>
+        </div>
+    </div>
+{% endblock %}
