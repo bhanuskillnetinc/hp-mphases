@@ -1,18 +1,16 @@
 @mixin shop-ui-header($name: '.header') {
-
     #{$name} {
-
         &__lenovo-nav__inner {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 14px 0; // matches Lenovo exact spacing
+            padding: 14px 0;
         }
 
         &__lenovo-nav__left {
             display: flex;
             align-items: center;
-            gap: 24px; // perfect distance like Lenovo
+            gap: 24px;
             list-style: none;
             margin: 0;
             padding: 0;
@@ -21,7 +19,7 @@
         &__lenovo-nav__right {
             display: flex;
             align-items: center;
-            gap: 0; // perfect distance like Lenovo
+            gap: 0;
             list-style: none;
             margin: 0;
             padding: 0;
@@ -35,7 +33,7 @@
             text-decoration: none;
             padding-bottom: 6px;
             display: inline-block;
-            transition: color .2s ease;
+            transition: color 0.2s ease;
             position: relative;
         }
 
@@ -133,9 +131,8 @@
         /* small caret arrow */
         &__caret {
             font-size: 12px;
-            transition: transform .2s ease;
+            transition: transform 0.2s ease;
             color: #000000;
-
         }
 
         /* --- DROPDOWN PANEL --- */
@@ -155,7 +152,7 @@
 
         /* Lenovo-style red bar on top */
         &__dropdown-menu::before {
-            content: "";
+            content: '';
             position: absolute;
             top: -4px;
             left: 12px;
@@ -185,7 +182,7 @@
             color: #111;
             text-decoration: none;
             font-weight: 600;
-            transition: background .15s ease;
+            transition: background 0.15s ease;
         }
 
         &__dropdown-list a:hover {
@@ -201,13 +198,12 @@
         &__top-pill-dropdown:hover &__caret,
         &__top-pill-dropdown:focus-within &__caret {
             transform: rotate(180deg);
-            content: "\e91c";
-
+            content: '\e91c';
         }
 
         /* Red underline under JOIN text when open */
         &__top-pill-join &__pill-link::after {
-            content: "";
+            content: '';
             position: absolute;
             left: 0;
             right: 0;
@@ -215,7 +211,7 @@
             height: 3px;
             background: transparent;
             border-radius: 2px;
-            transition: background .15s;
+            transition: background 0.15s;
         }
 
         /* Icon spacing */
@@ -322,7 +318,7 @@
         }
 
         &__top {
-            background: #EDEDED; // $setting-color-black
+            background: #ededed; // $setting-color-black
             color: $setting-color-gray-3;
             margin-bottom: rem(15);
             display: none;
@@ -368,7 +364,7 @@
         &__navigation-main {
             // position: relative;  // relative
             display: flex;
-            background-color: #EDEDED;
+            background-color: #ededed;
             z-index: $setting-zi-header + 1;
         }
 
@@ -449,7 +445,6 @@
         }
 
         &--checkout {
-
             #{$name}__navigation-top,
             .container {
                 position: relative;
