@@ -1,7 +1,5 @@
 @mixin shop-ui-wishlist-detail-table($name: '.wishlist-detail-table') {
-
     #{$name} {
-
         @content;
     }
 
@@ -194,7 +192,7 @@
             font-size: 15px;
             line-height: 1.3;
             font-weight: 700;
-            color: #294E95 !important;
+            color: #294e95 !important;
             cursor: pointer;
             min-height: 46px;
         }
@@ -220,7 +218,7 @@
             .star {
                 font-style: normal;
                 color: #f0c040;
-                opacity: .35;
+                opacity: 0.35;
             }
 
             .is--filled {
@@ -257,7 +255,7 @@
             margin-bottom: 14px;
             font-family: inherit;
             margin-top: 4rem;
-            
+
             .wishlist-card__sale-row {
                 display: flex;
                 align-items: center;
@@ -315,7 +313,7 @@
             margin-bottom: 8px;
             margin-top: 8px;
 
-            &>div {
+            & > div {
                 margin-bottom: 4px;
             }
         }
@@ -338,7 +336,6 @@
             }
         }
     }
-
 }
 
 @include shop-ui-wishlist-detail-table();

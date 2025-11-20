@@ -1,11 +1,9 @@
 @mixin shop-ui-wishlist-overview-table($name: '.wishlist-overview-table') {
-
     #{$name} {
         @content;
     }
 
     .lists {
-
         &__title {
             font-size: 34px;
             line-height: 28px;
@@ -125,7 +123,6 @@
             grid-template-columns: 1fr;
         }
     }
-
 }
 
 @include shop-ui-wishlist-overview-table();

@@ -1,6 +1,6 @@
 @mixin shop-ui-explore-hp-item($name: '.explore-hp-item') {
     #{$name} {
-        width: 8%;;
+        width: 8%;
         display: flex;
         flex-direction: column;
         align-items: center;

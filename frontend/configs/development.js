@@ -172,12 +172,7 @@ const getConfiguration = async (appSettings) => {
                     // =============================================
                     {
                         test: /@fortawesome[\\/]fontawesome-free[\\/].+\.scss$/,
-                        use: [
-                            MiniCssExtractPlugin.loader,
-                            'css-loader',
-                            'postcss-loader',
-                            'sass-loader',
-                        ],
+                        use: [MiniCssExtractPlugin.loader, 'css-loader', 'postcss-loader', 'sass-loader'],
                     },
                 ],
             },
