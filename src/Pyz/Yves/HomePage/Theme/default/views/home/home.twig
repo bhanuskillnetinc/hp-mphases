@@ -3,28 +3,44 @@
 {% block pageInfo %}{% endblock %}
 
 {% block container %}
-    {% embed organism('jumbotron-slider') only %}
-        {% block body %}
-            {% embed molecule('slick-carousel') with {
+	{% embed organism('jumbotron-slider') only %}
+		{% block body %}
+			{% embed molecule('slick-carousel') with {
                 attributes: {
                     'data-json': attributes['data-json'],
                 },
             } only %}
-                {% block slides %}
-                    {% cms_slot 'slt-2' %}
-                {% endblock %}
-            {% endembed %}
-        {% endblock %}
-    {% endembed %}
+				{% block slides %}
+					{% cms_slot 'slt-2' %}
+				{% endblock %}
+			{% endembed %}
+		{% endblock %}
+	{% endembed %}
 
 
-    <div class="container container--home-page">
-        <main>
-            {% block content %}
+	<div class="container container--home-page">
+		<main>
+			{% block content %}
+				{% set exploreItems = [
+                    { url: '/en/computers', icon: 'fa-solid fa-computer', label: 'Computers' },
+                    { url: '/en/cameras-&camcorders', icon: 'fa-solid fa-camera', label: 'Cameras' },
+                    { url: '/en/telecom-&-navigation/smartphones', icon: 'fa-solid fa-mobile-screen-button', label: 'Smartphones' },
+                    { url: '/en/smart-wearables/smartwatches', icon: 'fa-solid fa-stopwatch', label: 'Smartwatches' },
+                    { url: '/en/computers/tablets', icon: 'fa-solid fa-tablet', label: 'Tablets' },
+                    { url: '/en/imprint', icon: 'fa-solid fa-headset', label: 'Support' },
+                    { url: '/en/imprint', icon: 'fa-solid fa-circle-question', label: 'About Hp' },
+                    { url: '/en/outlet', icon: 'fa-solid fa-dollar-sign', label: 'Deals' }
+                ] %}
 
-                {% cms_slot 'slt-3' %}
+				{% include molecule('explore-hp', 'HomePage') with { 
+                    data: {
+                        items: exploreItems
+                    }
+                 } only %}
 
-            {% endblock %}
-        </main>
-    </div>
+				{% cms_slot 'slt-3' %}
+
+			{% endblock %}
+		</main>
+	</div>
 {% endblock %}

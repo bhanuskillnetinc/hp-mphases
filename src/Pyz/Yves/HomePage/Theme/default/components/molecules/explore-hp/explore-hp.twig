@@ -1,0 +1,30 @@
+{% extends model('component') %}
+
+
+{% define config = {
+    name: 'explore-hp',
+    tag: 'div'
+} %}
+
+{% define data = {
+    items: []
+} %}
+
+{% block body %}
+
+	<div class="{{config.name}}">
+		<h2 class="{{config.name}}__title">Explore HP</h2>
+		<div class="{{config.name}}__items">
+			{% for item in data.items %}
+				{% include molecule('explore-hp-item', 'HomePage') with {
+                    data: {
+                        url: item['url'],
+                        icon: item['icon'],
+                        label: item['label'],
+                    }
+                } only %}
+			{% endfor %}
+		</div>
+	</div>
+
+{% endblock %}

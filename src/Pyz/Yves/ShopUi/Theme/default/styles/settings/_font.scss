@@ -1,4 +1,4 @@
-$setting-font-family: 'Calibre', sans-serif;
+$setting-font-family: 'Lato', helvetica, arial, sans-serif;
 $setting-font-family-additional: 'Circular', sans-serif;
 $setting-font-family-code: 'Menlo', monospace;
 $setting-font-size-base: 16px;
@@ -42,3 +42,5 @@ $setting-font-letter-spacing: (
     5: rem(2.7, number),
     6: rem(2.5, number),
 );
+
+$fa-font-path: '../fonts';
