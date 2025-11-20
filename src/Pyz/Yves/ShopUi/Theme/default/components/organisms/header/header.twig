@@ -25,19 +25,15 @@
 	<div
 		class="container grid grid--justify">
 		{# {% include molecule('panel-info') with {
-										class: 'grid grid--justify',
-										data: {
-										info: benefits,
-										},
-										} only %} #}
+			class: 'grid grid--justify',
+			data: {
+			info: benefits,
+			},
+			} only %} #}
 
 		<div class="col {{ config.name }}__custom-dropdown">
-			{# place here top pill code #}
-
-			{# ============================  TOP BAR (JOIN + EDUCATION) ============================ #}
-
-				<div
-				class="{{ config.name }}__top-pill grid grid--middle"> {#  ------------------------------------------- JOIN LENOVO PRO BUSINESS STORE (DROPDOWN) ------------------------------------------- #}
+				<div class="{{ config.name }}__top-pill grid grid--middle">
+                {#  ------------------------------------------- JOIN LENOVO PRO BUSINESS STORE (DROPDOWN) ------------------------------------------- #}
 				<div class="{{ config.name }}__top-pill-dropdown {{ config.name }}__top-pill-join" tabindex="0">
 
 					<a class="{{ config.name }}__pill-link" aria-haspopup="true" aria-expanded="false">
@@ -74,10 +70,6 @@
 
 				</div>
 
-				{# -------------------------
-								                        EDUCATION DROPDOWN
-								                ------------------------- #}
-
 				<div class="{{ config.name }}__top-pill-dropdown" tabindex="0">
 
 					<button class="{{ config.name }}__pill-button" aria-haspopup="true" aria-expanded="false">
@@ -110,11 +102,6 @@
 					</div>
 
 				</div>
-
-
-				{# -------------------------
-								            ICONS SECTION
-								            ------------------------- #}
 
 				<div class="{{ config.name }}__pill-icons grid grid--middle">
 
