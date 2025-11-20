@@ -1,14 +1,15 @@
 @mixin shop-ui-wishlist-overview-table($name: '.wishlist-overview-table') {
 
     #{$name} {
-
         @content;
     }
 
     .lists {
+
         &__title {
             font-size: 34px;
-            font: 24px / 28px Lato;
+            line-height: 28px;
+            font-family: Lato, sans-serif;
             margin-bottom: 25px;
         }
 
@@ -26,7 +27,7 @@
             transition: box-shadow 0.2s ease;
 
             &:hover {
-                box-shadow: 0 4px 18px rgba(0, 0, 0, 0.08);
+                box-shadow: 0 4px 18px rgb(0 0 0 / 8%);
             }
         }
 
@@ -112,14 +113,14 @@
     }
 
     /* Tablet */
-    @media (max-width: 992px) {
+    @media (width <=992px) {
         .lists__grid {
             grid-template-columns: repeat(2, 1fr);
         }
     }
 
     /* Mobile */
-    @media (max-width: 576px) {
+    @media (width <=576px) {
         .lists__grid {
             grid-template-columns: 1fr;
         }

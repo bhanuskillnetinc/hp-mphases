@@ -258,9 +258,6 @@
 
         &__subscription {
             width: 100%;
-
-            @include helper-breakpoint-media-min($xl-min) {
-            }
         }
 
         &__logo-section {
