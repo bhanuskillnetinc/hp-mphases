@@ -15,7 +15,7 @@
             <div class="grid grid--middle">
                 {% block selects %}
                     <div class="col col--sm-3 col--md-5 {{ config.jsName }}__filter" data-block-to="js-filter-section__sorting" data-breakpoint="769">
-                        {% block label %}
+                        {# {% block label %}
                             <label class="{{ config.name }}__label is-hidden-sm-md">{{ 'catalog.filter.per' | trans }}:</label>
                         {% endblock %}
 
@@ -39,16 +39,15 @@
                                     <option value="{{ limit }}" {{ selectedAttribute }}>{{ limit | executeFilterIfExists('formatInt', app.locale) }}</option>
                                 {% endfor %}
                             {% endblock %}
-                        {% endembed %}
+                        {% endembed %} #}
                     </div>
 
                     <div class="col col--sm-9 col--md-7 {{ config.jsName }}__filter" data-block-to="js-filter-section__sorting" data-breakpoint="769">
                         {% embed molecule('custom-select') with {
                             class: 'float-right',
-                            modifiers: ['hollow'],
+                            modifiers: [''],
                             attributes: {
                                 name: 'sort',
-                                'config-theme': 'secondary',
                                 'config-width': '100%',
                             },
                             embed: {
