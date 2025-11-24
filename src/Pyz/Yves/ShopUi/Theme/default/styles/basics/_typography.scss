@@ -67,7 +67,7 @@ $font-circular-bold: '#{$font-circular-url}lineto-circular-pro-bold';
         @include helper-font-weight(regular);
         @include helper-font-line-height(default);
         position: relative;
-        background-color: $setting-color-white;
+        background-color: $setting-color-gray-1;
         color: $setting-color-text;
         font-family: $setting-font-family;
     }

@@ -76,13 +76,6 @@
                 <form method="GET" class="grid js-catalog-filter-target js-form-input-default-value-disabler__catalog-form {{ catalogJsName }}__form">
                     {% block form %}
                         <div class="col col--sm-12 col--xl-3 catalog-left-side">
-                            {% include molecule('view-mode-switch', 'CatalogPage') with {
-                                class: 'catalog-left-side__switcher',
-                                data: {
-                                    viewMode: data.viewMode,
-                                }
-                            } only %}
-
                             {% block filterSection %}
                                 {% include organism('filter-section', 'CatalogPage') with {
                                     data: {
@@ -111,13 +104,21 @@
                             </button>
                             {% block catalogContent %}
                                 <div class="grid">
-                                    <div class="col col--sm-12">
+                                    <div class="col--lg-10 col--sm-12">
                                         {% include molecule('sort', 'CatalogPage') with {
                                             data: {
                                                 pagination: data.pagination,
                                                 sort: data.sort,
                                                 parentJsName: catalogJsName,
                                             },
+                                        } only %}
+                                    </div>
+                                     <div class="col--lg-2 col--sm-12 grid--middle text-center">
+                                        {% include molecule('view-mode-switch', 'CatalogPage') with {
+                                            class: '',
+                                            data: {
+                                                viewMode: data.viewMode
+                                            }
                                         } only %}
                                     </div>
                                     <div class="col col--sm-12">
@@ -128,14 +129,7 @@
                                             }
                                         } only %}
                                     </div>
-                                    <div class="col col--sm-12">
-                                        {% include molecule('view-mode-switch', 'CatalogPage') with {
-                                            class: 'is-hidden-xl-only',
-                                            data: {
-                                                viewMode: data.viewMode
-                                            }
-                                        } only %}
-                                    </div>
+                                   
                                 </div>
 
                                 <div class="grid {% if data.viewMode != 'list' %}grid--stretch product-list{% endif %}">

@@ -4,9 +4,10 @@
         position: relative;
         margin-bottom: rem(10);
         font-family: $setting-font-family-additional;
+        border: 1px solid $setting-color-gray-3;
         border-radius: rem(4);
         overflow: hidden;
-        background: $setting-color-alpha-1;
+        background: $setting-color-white;
 
         &::before {
             @include helper-effect-transition(opacity);
@@ -16,7 +17,6 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: linear-gradient(to bottom, $setting-color-black, $setting-color-alpha-1);
             opacity: 0;
         }
 
@@ -25,6 +25,7 @@
         }
 
         &__col {
+            color:$setting-color-blue;
             padding: rem(10) rem(16) rem(25);
             position: relative;
 
@@ -38,7 +39,7 @@
             &:hover {
                 text-decoration: none;
                 cursor: pointer;
-                color: $setting-color-black;
+                color: $setting-color-blue;
             }
         }
 
@@ -80,13 +81,11 @@
                 left: 0;
                 right: 0;
                 bottom: 0;
-                background: $setting-color-alpha-1;
                 z-index: $setting-zi-element-floating;
             }
 
             &::after {
                 @include helper-effect-transition(opacity);
-                background: linear-gradient(to bottom, $setting-color-black, $setting-color-alpha-1);
                 opacity: 0;
             }
         }

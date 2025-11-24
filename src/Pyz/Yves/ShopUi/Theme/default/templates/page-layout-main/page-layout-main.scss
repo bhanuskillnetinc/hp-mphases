@@ -37,6 +37,15 @@
             }
         }
 
+        &__customer-overview-box {
+            margin: 0 48px;
+            background-color: #f8f8f8;
+        }
+
+        &__customer-overview-title {
+            padding: 15px;
+        }
+
         @content;
     }
 }

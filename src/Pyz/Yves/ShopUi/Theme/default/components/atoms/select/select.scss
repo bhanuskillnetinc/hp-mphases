@@ -3,21 +3,24 @@
         @include helper-effect-transition(border-color);
         display: inline-block;
         position: relative;
+        width: 100%;
         max-width: 100%;
         background-color: $setting-color-white;
-        border: rem(1) solid $setting-color-input-border;
+        border: 1px solid $setting-color-gray-7;
         border-radius: rem(2);
 
         &__select {
             display: block;
             width: 100%;
-            background-color: $setting-color-transparent;
-            border: rem(4) solid $setting-color-transparent;
+            background-color: $setting-color-white;
+            border-radius: 4px;
             border-right-width: rem(24);
             padding: rem(10);
             font: fw(regular) rem(16) / rem(18) $setting-font-family;
-            color: $setting-color-black;
+            color: $setting-color-gray-4;
             appearance: none;
+            font-weight: 200;
+
 
             &:-moz-focusring {
                 color: transparent;

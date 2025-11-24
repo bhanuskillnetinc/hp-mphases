@@ -8,23 +8,21 @@
     {% set gridViewActiveClass = data.viewMode == 'grid' ? config.name ~ '__link--active' %}
     {% set listViewActiveClass = data.viewMode != 'grid' ? config.name ~ '__link--active' %}
 
-    <a class="{{ config.name }}__link {{ gridViewActiveClass }}" href="{{ functionExists('generatePath') ? generatePath(gridHref) : gridHref }}">
-        {% include atom('icon') with {
-            class: 'spacing-right',
+    <a class="{{ config.name }}__link {{ gridViewActiveClass }} {{ config.name }}__grid-link" href="{{ gridHref ?: (functionExists('generatePath') ? generatePath(gridHref) : '') }}">
+        {# {% include atom('icon') with {
+            class: '',
             modifiers: ['grid'],
             data: {
                 name: 'grid',
             },
-        } only %}
-        {{ 'catalog.view.mode.grid' | trans }}
+        } only %} #}
     </a>
-    <a class="{{ config.name }}__link {{ listViewActiveClass }}" href="{{ functionExists('generatePath') ? generatePath(listHref) : listHref }}">
-        {% include atom('icon') with {
-            class: 'spacing-right',
+    <a class="{{ config.name }}__link {{ listViewActiveClass }} {{ config.name }}__list-link" href="{{ listHref ?: (functionExists('generatePath') ? generatePath(listHref) : '') }}">
+        {# {% include atom('icon') with {
+            class: '',
             data: {
                 name: 'list',
             },
-        } only %}
-        {{ 'catalog.view.mode.list' | trans }}
+        } only %} #}
     </a>
 {% endblock %}

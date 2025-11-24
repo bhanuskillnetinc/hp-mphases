@@ -1,14 +1,12 @@
 @mixin catalog-page-view-mode-switch($name: '.view-mode-switch') {
     #{$name} {
         display: flex;
+        text-align: center;
         width: 100%;
-        border-top: rem(1) dotted $setting-color-gray-3;
-        border-bottom: rem(1) dotted $setting-color-gray-3;
-        padding: rem(20) 0;
-        margin: rem(10) auto rem(20);
+        padding: 25px;
 
         @include helper-breakpoint-media-min($xl-min) {
-            padding: rem(17) 0;
+            padding: 25px;
             margin: 0;
             border-bottom: none;
         }
@@ -35,6 +33,26 @@
             }
         }
 
+        &__grid-link {
+            margin-right: 10px;
+            width: 25px;
+            height: 25px;
+            background-image: url("//p3-ofp.static.pub//fes/cms/2023/12/20/qo538ir5yhsb8n38es2wfbf0b5wh1k408361.svg");
+            
+            &.view-mode-switch__link--active {
+                background-image: url("//p2-ofp.static.pub//fes/cms/2023/12/20/aryqbkjxt4f0w0lvmf138ep0q7ptot734843.svg");
+            }
+        }
+
+        &__list-link {
+            width: 25px;
+            height: 25px;
+            background-image: url("//p1-ofp.static.pub//fes/cms/2023/12/20/pqrzeds6734k5vn3rjm7u2e5bmxusu385188.svg");
+
+            &.view-mode-switch__link--active {
+                background-image: url("//p4-ofp.static.pub//fes/cms/2023/12/20/f2z9v41w79pxcf6k4u2xogn98mt930395073.svg");
+            }
+        }
         @content;
     }
 }

@@ -1,0 +1,62 @@
+@mixin customer-dashboard-card($name: '.customer-dashboard-card') {
+    #{$name} {
+        display: block;
+        text-decoration: none;
+        color: inherit;
+
+        &__body {
+            position: relative;
+            background-color: #fff;
+            box-shadow: 0 2px 15px #0000001a;
+            border-radius: rem(4);
+            padding: rem(20) rem(12) rem(0) rem(65);
+            height: rem(98);
+            cursor: pointer;
+            margin: rem(12);
+            transition: box-shadow 0.2s ease;
+        }
+
+        &__body:hover {
+            box-shadow: 0 4px 25px #00000026;
+        }
+
+        &__link:hover {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        &__content {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        &__title {
+            font-size: rem(16);
+            font-weight: 600;
+            margin: 0;
+        }
+
+        &__description {
+            font-size: rem(14);
+            color: $setting-color-gray-5;
+            margin: rem(4) 0 0 0;
+        }
+
+        &__icon {
+            position: absolute;
+            left: rem(24);
+            top: rem(32);
+            height: rem(32);
+            width: rem(30);
+
+            img {
+                height: 100%;
+                width: 100%;
+                object-fit: contain;
+            }
+        }
+    }
+}
+
+@include customer-dashboard-card();
