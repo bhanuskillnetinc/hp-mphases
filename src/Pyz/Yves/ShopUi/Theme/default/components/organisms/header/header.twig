@@ -13,90 +13,146 @@
 } %}
 
 {% block body %}
-    {% set benefits = [
+{% set benefits = [
         'global.benefit.free_returns',
         'global.benefit.warranty',
         'global.benefit.competitive_prices'
     ] %}
 
-    {% widget 'AgentControlBarWidget' only %}{% endwidget %}
+{% widget 'AgentControlBarWidget' only %}{% endwidget %}
 
-    <div class="{{ config.name }}__top">
-        <div class="container grid grid--justify">
-            {% include molecule('panel-info') with {
-                class: 'grid grid--justify',
-                data: {
-                    info: benefits,
-                },
-            } only %}
+<div class="{{ config.name }}__top">
+	<div
+		class="container grid grid--justify">
+		{# {% include molecule('panel-info') with {
+			class: 'grid grid--justify',
+			data: {
+			info: benefits,
+			},
+			} only %} #}
 
-            <div class="col {{ config.name }}__currency-lang">
-                {% widget 'LanguageSwitcherWidget' args [
-                    app.request.pathInfo,
-                    app.request.queryString,
-                    app.request.requestUri
-                ] with {
+		<div class="col {{ config.name }}__custom-dropdown">
+				<div class="{{ config.name }}__top-pill grid grid--middle">
+                {#  ------------------------------------------- JOIN LENOVO PRO BUSINESS STORE (DROPDOWN) ------------------------------------------- #}
+				<div class="{{ config.name }}__top-pill-dropdown {{ config.name }}__top-pill-join" tabindex="0">
+
+					<a class="{{ config.name }}__pill-link" aria-haspopup="true" aria-expanded="false">
+						Join
+
+					</a>
+					<span class="{{ config.name }}__pill-text">
+						Lenovo Pro Business Store
+					</span>
+					<span class="{{ config.name }}__caret">
+						{% include atom('icon') with
+                            {
+                            modifiers: ['small'],
+                            data: {
+                            name: 'arrow-right-thin'
+                            }
+                            } only %}
+
+					</span>
+
+					<div class="{{ config.name }}__dropdown-menu" role="menu">
+						<ul class="{{ config.name }}__dropdown-list">
+							<li role="menuitem">
+								<a href="{{ url('register') }}">Register ></a>
+							</li>
+							<li role="menuitem">
+								<a href="{{ url('login') }}">Log In ></a>
+							</li>
+							<li role="menuitem">
+								<a href="https://www.lenovo.com/in/en/business/benefits/">Learn More ></a>
+							</li>
+						</ul>
+					</div>
+
+				</div>
+
+				<div class="{{ config.name }}__top-pill-dropdown" tabindex="0">
+
+					<button class="{{ config.name }}__pill-button" aria-haspopup="true" aria-expanded="false">
+						Education
+						<span class="{{ config.name }}__caret">
+							{% include atom('icon') with {
+                    modifiers: ['small'],
                     data: {
-                        additionalClassName: config.name,
-                    },
-                    embed: {
-                        parentConfigName: config.name,
-                    },
+                        name: 'arrow-right-thin'
+                    }
                 } only %}
-                    {% block body %}
-                        <div class="{{ embed.parentConfigName }}__select">
-                            {{ parent () }}
-                        </div>
-                    {% endblock %}
-                {% endwidget %}
+						</span>
+					</button>
 
-                {%- widget 'CurrencyWidget' with {
-                    data: {
-                        additionalClassName: config.name,
-                    },
-                    embed: {
-                        parentConfigName: config.name,
-                    },
-                } only %}
-                    {% block body %}
-                        <div class="{{ embed.parentConfigName }}__select">
-                            {{ parent () }}
-                        </div>
-                    {% endblock %}
-                {% endwidget %}
+					<div class="{{ config.name }}__dropdown-menu" role="menu">
+						<ul class="{{ config.name }}__dropdown-list">
+							<li role="menuitem">
+								<a href="https://www.lenovo.com/in/en/student/#cc__steps">Sign Up Now >
+								</a>
+							</li>
+							<li role="menuitem">
+								<a href="https://www.lenovo.com/in/en/student/?IPromoID=LEN894819">Know More >
+								</a>
+							</li>
+							<li role="menuitem">
+								<a href="https://www.lenovo.com/in/en/d/students-offer/bestsellers/?IPromoID=LEN991931">Shop Now >
+								</a>
+							</li>
+						</ul>
+					</div>
 
-                {%- widget 'StoreSwitcher' with {
-                    data: {
-                        additionalClassName: config.name,
-                    },
-                    embed: {
-                        parentConfigName: config.name,
-                    },
-                } only %}
-                    {% block body %}
-                        <div class="{{ embed.parentConfigName }}__select">
-                            {{ parent () }}
-                        </div>
-                    {% endblock %}
-                {% endwidget %}
-            </div>
-        </div>
-    </div>
+				</div>
 
-    <div class="container">
-        <div class="{{ config.name }}__search-wrapper js-{{ config.name }}__search-wrapper">
-            <div class="{{ config.name }}__search">
-                <div class="{{ config.name }}__search-close js-{{ config.name }}__search-close">
-                    {% include atom('icon') with {
+				<div class="{{ config.name }}__pill-icons grid grid--middle">
+
+					<a href="#" class="{{ config.name }}__icon-link">
+						<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-universal-access-circle" viewbox="0 0 16 16">
+							<path d="M8 4.143A1.071 1.071 0 1 0 8 2a1.071 1.071 0 0 0 0 2.143m-4.668 1.47 3.24.316v2.5l-.323 4.585A.383.383 0 0 0 7 13.14l.826-4.017c.045-.18.301-.18.346 0L9 13.139a.383.383 0 0 0 .752-.125L9.43 8.43v-2.5l3.239-.316a.38.38 0 0 0-.047-.756H3.379a.38.38 0 0 0-.047.756Z"/>
+							<path d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0M1 8a7 7 0 1 1 14 0A7 7 0 0 1 1 8"/>
+						</svg>
+					</a>
+
+					<a href="#" class="{{ config.name }}__icon-link">
+						<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-geo-alt" viewbox="0 0 16 16">
+							<path d="M12.166 8.94c-.524 1.062-1.234 2.12-1.96 3.07A32 32 0 0 1 8 14.58a32 32 0 0 1-2.206-2.57c-.726-.95-1.436-2.008-1.96-3.07C3.304 7.867 3 6.862 3 6a5 5 0 0 1 10 0c0 .862-.305 1.867-.834 2.94M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10"/>
+							<path d="M8 8a2 2 0 1 1 0-4 2 2 0 0 1 0 4m0 1a3 3 0 1 0 0-6 3 3 0 0 0 0 6"/>
+						</svg>
+					</a>
+
+					<a href="/wishlist" class="{{ config.name }}__icon-link">
+						<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-heart" viewbox="0 0 16 16">
+							<path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143q.09.083.176.171a3 3 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15"/>
+						</svg>
+					</a>
+
+					<a href="/support" class="{{ config.name }}__icon-link">
+						<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-headset" viewbox="0 0 16 16">
+							<path d="M8 1a5 5 0 0 0-5 5v1h1a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V6a6 6 0 1 1 12 0v6a2.5 2.5 0 0 1-2.5 2.5H9.366a1 1 0 0 1-.866.5h-1a1 1 0 1 1 0-2h1a1 1 0 0 1 .866.5H11.5A1.5 1.5 0 0 0 13 12h-1a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h1V6a5 5 0 0 0-5-5"/>
+						</svg>
+					</a>
+
+				</div>
+
+			</div>
+
+		</div>
+
+	</div>
+</div>
+<div class="container">
+	<div class="{{ config.name }}__search-wrapper js-{{ config.name }}__search-wrapper">
+		<div class="{{ config.name }}__search">
+			<div class="{{ config.name }}__search-close js-{{ config.name }}__search-close">
+				{% include atom('icon') with {
                         class: config.name ~ '__search-close-icon',
                         data: {
                             name: 'close',
                         },
                     } only %}
-                </div>
+			</div>
 
-                {% if data.showSearchForm %}
-                    {% include molecule('search-form') with {
+			{% if data.showSearchForm %}
+				{% include molecule('search-form') with {
                         attributes: {
                             'data-search-id': 'desktop',
                             'wrapper-class-name': 'js-' ~ config.name ~ '__search-wrapper',
@@ -105,62 +161,144 @@
                             'wrapper-toggle-class-name': config.name ~ '__search-wrapper-active',
                         },
                     } only %}
-                {% endif %}
-            </div>
-        </div>
+			{% endif %}
+		</div>
+	</div>
 
-        {% block additionalLink %}{% endblock %}
+	{% block additionalLink %}{% endblock %}
 
-        <div class="{{ config.name }}__row {{ config.name }}__navigation-top grid grid--middle grid--justify">
-            <div class="col col--sm-12 col--lg-4 is-hidden-sm-md">
-                {% if data.showSearchForm %}
-                    <div class="{{ config.name }}__search-open js-{{ config.name }}__search-open">
-                        {% include atom('icon') with {
+	<div class="{{ config.name }}__row {{ config.name }}__navigation-top grid grid--middle grid--justify">
+
+		<div class="{{ config.name }}__logo-container col col--sm col--lg logo-margin">
+			{% set modifiers = ['responsive'] %}
+			{% include molecule('logo') with {
+                    modifiers: modifiers,
+                    class: 'grid grid--center'
+                } only %}
+		</div>
+
+		<div class="col col--sm col--lg is-hidden-sm-md {{ config.name }}__category-search">
+			<div class="{{ config.name }}__select col col-sm-2 custom-switcher-category">
+				{% set options = [
+                        { label: 'All', value: 'all', selected: true },
+                        { label: 'Laptops', value: 'laptops', selected: false },
+                        { label: 'Desktops', value: 'desktops', selected: false },
+                        { label: 'Monitors', value: 'monitors', selected: false },
+                        { label: 'Workstations', value: 'workstations', selected: false },
+                        { label: 'Tablets', value: 'tablets', selected: false },
+                    ] %}
+
+				{% include atom('select') with {
+                        modifiers: ['naked'],
+                        data: {
+                            options: options,
+                        },
+                        attributes: {
+                            name: 'custom',
+                            'data-dropdown': 'custom-switcher',
+                        },
+                    } only %}
+			</div>
+
+			{% if data.showSearchForm %}
+
+				<div class="{{ config.name }}__search-open js-{{ config.name }}__search-open">
+					<span class="category-search__placeholder">
+						What are you looking for today?
+					</span>
+					{% include atom('icon') with {
                             class: config.name ~ '__search-open-icon',
                             data: {
                                 name: 'search'
                             }
                         } only %}
-                    </div>
-                {% endif %}
-            </div>
+				</div>
+			{% endif %}
+		</div>
 
-            <div class="col col--sm-12 col--lg-4">
-                {% include molecule('logo') with {
-                    modifiers: modifiers,
-                    class: 'grid grid--center'
-                } only %}
-            </div>
 
-            <div class="col col--lg-4 is-hidden-sm-md">
-                {% if data.showNavigation %}
-                    {% include organism('navigation-top') with {
+		<div class="col col--lg is-hidden-sm-md">
+			{% if data.showNavigation %}
+				{% include organism('navigation-top') with {
                         data: {
                             isAjaxMode: data.isAjaxMode,
                             ajaxCartUrl: data.ajaxCartUrl,
                         },
                     } only %}
-                {% endif %}
-            </div>
-        </div>
-        {% if data.showNavigation %}
-            <div class="is-hidden-lg-xl">
-                <div class="{{ config.name }}__row {{ config.name }}__navigation-top">
-                    {% include molecule('navigation-top-mobile') with {
-                        data: {
-                            isAjaxMode: data.isAjaxMode,
-                            ajaxCartUrl: data.ajaxCartUrl,
-                        },
-                    } only %}
-                </div>
-            </div>
-        {% endif %}
-    </div>
-    {% if data.showNavigation %}
-        <div class="{{ config.name }}__row {{ config.name }}__navigation-main is-hidden-sm-md">
-            {% block mainNavigation %}
-                {% widget 'NavigationWidget' args ['MAIN_NAVIGATION_DESKTOP', 'navigation-header'] %}{% endwidget %}
-            {% endblock %}
-        </div>
-    {% endif %}
-{% endblock %}
+			{% endif %}
+		</div>
+
+	</div>
+</div>
+
+<div class="{{ config.name }}__custom-nav">
+
+	<div class="{{ config.name }}__lenovo-nav is-hidden-sm-md">
+		<div class="container {{ config.name }}__lenovo-nav__container">
+			<div
+				class="{{ config.name }}__lenovo-nav__inner">
+
+				{# LEFT MAIN MENU #}
+				<ul class="{{ config.name }}__lenovo-nav__left">
+					<li>
+						<a href="#">Products</a>
+					</li>
+					<li>
+						<a href="#">Solutions</a>
+					</li>
+					<li>
+						<a href="#">Services</a>
+					</li>
+					<li>
+						<a href="#">Support</a>
+					</li>
+					<li>
+						<a href="#">About Lenovo</a>
+					</li>
+					<li>
+						<a href="#">Deals</a>
+					</li>
+				</ul>
+
+				{# RIGHT MAIN MENU #}
+				<ul class="{{ config.name }}__lenovo-nav__right">
+					<li>
+						<a href="#">Gaming</a>
+					</li>
+					<li>
+						<a href="#">Education</a>
+					</li>
+					<li>
+						<a href="#">Business</a>
+					</li>
+					<li>
+						<a href="#">Creator</a>
+					</li>
+				</ul>
+
+			</div>
+		</div>
+	</div>
+</div>
+{% if data.showNavigation %}
+	<div class="is-hidden-lg-xl">
+		<div class="{{ config.name }}__row {{ config.name }}__navigation-top">
+			{% include molecule('navigation-top-mobile') with {
+                                data: {
+                                    isAjaxMode: data.isAjaxMode,
+                                    ajaxCartUrl: data.ajaxCartUrl,
+                                },
+                            } only %}
+		</div>
+	</div>
+{% endif %}
+{% if data.showNavigation %}
+	<div class="{{ config.name }}__row {{ config.name }}__navigation-main is-hidden-sm-md">
+		{% block mainNavigation %}
+			{% widget 'NavigationWidget' args ['MAIN_NAVIGATION_DESKTOP', 'navigation-header'] %}{% endwidget %}
+		{% endblock %}
+	</div>
+{% endif %}
+
+    {% endblock %}
+

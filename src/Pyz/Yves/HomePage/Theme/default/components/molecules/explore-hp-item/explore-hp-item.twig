@@ -1,0 +1,25 @@
+{% extends model('component') %}
+
+{% define config = {
+    name: 'explore-hp-item',
+    tag: 'div'
+} %}
+
+{% define data = {
+    url: required,
+	icon: required,
+	label: required
+} %}
+
+{% block body %}
+
+	<a href="{{ data.url }}" class="{{config.name}}">
+		<div class="{{config.name}}__icon">
+		<i class="{{data.icon}}"></i>
+		</div>
+		<p class="{{config.name}}__label">
+			{{ data.label }}
+		</p>
+	</a>
+
+{% endblock %}

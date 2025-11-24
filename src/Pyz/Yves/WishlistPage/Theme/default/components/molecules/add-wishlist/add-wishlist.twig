@@ -9,16 +9,18 @@
 } %}
 
 {% block body %}
-    {{ form_start(data.wishlistForm) }}
-        <div class="grid grid--nowrap">
-            <div class="col col--expand">
-                {{ form_widget(data.wishlistForm.name, { attr: { placeholder: 'customer.account.wishlist.overview.enter_name' | trans }}) }}
-            </div>
-            <div class="col">
-                <button type="submit" class="button button--combined">{{ 'customer.account.wishlist.overview.add_new' | trans }}</button>
-            </div>
-        </div>
+	{{ form_start(data.wishlistForm) }}
+	<div class="list-create-wrapper">
+		<h5 class="list-title">
+			Sign in to save, share & manage your<br>
+			Lists for all your shopping needs
+		</h5>
+		<div class="list-input-group">
+			{{ form_widget(data.wishlistForm.name, { attr: { placeholder: 'customer.account.wishlist.overview.enter_name' | trans }, class: 'list-input' }) }}
+			<button type="submit" class="button button--combined">{{ 'customer.account.wishlist.overview.add_new' | trans }}</button>
+		</div>
+	</div>
 
-        {{ form_errors(data.wishlistForm) }}
-    {{ form_end(data.wishlistForm) }}
+	{{ form_errors(data.wishlistForm) }}
+	{{ form_end(data.wishlistForm) }}
 {% endblock %}

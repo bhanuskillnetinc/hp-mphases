@@ -1,5 +1,317 @@
 @mixin shop-ui-header($name: '.header') {
     #{$name} {
+        &__lenovo-nav__inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 14px 0;
+        }
+
+        &__lenovo-nav__left {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        &__lenovo-nav__right {
+            display: flex;
+            align-items: center;
+            gap: 0;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        &__lenovo-nav__left li a,
+        &__lenovo-nav__right li a {
+            font-size: 17px;
+            font-weight: 500;
+            color: #3a3a3a;
+            text-decoration: none;
+            padding-bottom: 6px;
+            display: inline-block;
+            transition: color 0.2s ease;
+            position: relative;
+        }
+
+        /* Hover underline (Lenovo red bar) */
+        &__lenovo-nav__left li a:hover::after,
+        &__lenovo-nav__right li a:hover::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -2px;
+            width: 100%;
+            height: 2px;
+            background-color: #c00; // Lenovo red
+        }
+
+        /* On hover change text color */
+        &__lenovo-nav__left li a:hover,
+        &__lenovo-nav__right li a:hover {
+            color: #000;
+        }
+
+        &__lenovo-nav__right li {
+            position: relative;
+            padding-right: 24px; // spacing before pipe
+        }
+
+        &__lenovo-nav__right li::after {
+            content: '|';
+            position: absolute;
+            right: 8px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #999;
+            font-weight: 300;
+        }
+
+        /* Remove pipe from last item */
+        &__lenovo-nav__right li:last-child::after {
+            content: '';
+        }
+
+        &__lenovo-nav__container {
+            padding-left: 0 !important;
+            padding-right: 0 !important;
+        }
+
+        &__lenovo-nav {
+            background: #fff;
+            border-bottom: 1px solid #eee;
+        }
+
+        &__top-pill {
+            display: flex;
+            align-items: center;
+        }
+
+        &__pill-text {
+            font-size: 16px;
+            color: #000000;
+            padding-right: 5px;
+        }
+
+        /* Shared container for both dropdowns */
+        &__top-pill-dropdown {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        /* JOIN link behaves like a dropdown trigger */
+        &__top-pill-join &__pill-link {
+            font-weight: 500;
+            color: #111;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 4px;
+            position: relative;
+        }
+
+        /* Education pill-button (white box) */
+        &__pill-button {
+            padding: 8px 14px;
+            border-radius: 2px;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 13px;
+            cursor: pointer;
+            color: #111;
+        }
+
+        /* small caret arrow */
+        &__caret {
+            font-size: 12px;
+            transition: transform 0.2s ease;
+            color: #000000;
+        }
+
+        /* --- DROPDOWN PANEL --- */
+        &__dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            right: 0;
+            min-width: 220px;
+            background: #fff;
+            border-radius: 6px;
+            border: 1px solid rgb(0 0 0 / 8%);
+            box-shadow: 0 8px 18px rgb(0 0 0 / 12%);
+            padding: 14px 12px;
+            z-index: 1500;
+        }
+
+        /* Lenovo-style red bar on top */
+        &__dropdown-menu::before {
+            content: '';
+            position: absolute;
+            top: -4px;
+            left: 12px;
+            right: 12px;
+            height: 4px;
+            background: #d62828;
+            border-radius: 4px 4px 0 0;
+        }
+
+        /* dropdown list */
+        &__dropdown-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        &__dropdown-list li {
+            margin: 0;
+        }
+
+        &__dropdown-list a {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px;
+            border-radius: 4px;
+            color: #111;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background 0.15s ease;
+        }
+
+        &__dropdown-list a:hover {
+            background: rgb(0 0 0 / 4%);
+        }
+
+        /* --- Hover behavior for BOTH dropdowns --- */
+        &__top-pill-dropdown:hover &__dropdown-menu,
+        &__top-pill-dropdown:focus-within &__dropdown-menu {
+            display: block;
+        }
+
+        &__top-pill-dropdown:hover &__caret,
+        &__top-pill-dropdown:focus-within &__caret {
+            transform: rotate(180deg);
+            content: '\e91c';
+        }
+
+        /* Red underline under JOIN text when open */
+        &__top-pill-join &__pill-link::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: -4px;
+            height: 3px;
+            background: transparent;
+            border-radius: 2px;
+            transition: background 0.15s;
+        }
+
+        /* Icon spacing */
+        &__pill-icons {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        &__icon-link {
+            display: inline-flex;
+            font-size: 18px;
+        }
+
+        &__custom-nav {
+            margin: -7px;
+        }
+
+        &__logo-container {
+            margin-left: -42px !important;
+            margin-right: -58px !important;
+        }
+
+        &__category-search {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            gap: 12px;
+            width: 43rem;
+            padding: 0;
+            height: 46px;
+            border: 2px solid #171717;
+            border-radius: 12px;
+            background-color: #fff;
+
+            // 🔧 Reset any grid behavior from .col or .col-sm-* inside
+            .col {
+                flex: 0 0 auto;
+                width: auto !important;
+                max-width: none;
+            }
+
+            .category-search__placeholder {
+                color: #8f8f8f;
+                font-size: 17px;
+                pointer-events: none; // click passes through to main handler
+                width: 532px;
+            }
+
+            // 🔽 Category dropdown (custom-switcher)
+            // .custom-switcher-category {
+            //     display: flex;
+            //     align-items: center;
+            //     flex: 0 0 auto;
+            //     margin: initial;
+
+            //     select {
+            //         border: none;
+            //         background: transparent;
+            //         font-weight: 600;
+            //         font-size: 14px;
+            //         cursor: pointer;
+            //         outline: none;
+            //         padding: 0 10px;
+            //     }
+            // }
+            .custom-switcher-category select {
+                border: none;
+                background: #ededed;
+                height: 41px;
+                line-height: 32px;
+                padding: 0 22px 0 4px;
+                border-radius: 8px 0 0 10px;
+                font-size: 14px;
+                font-weight: 600;
+                cursor: pointer;
+                position: relative;
+            }
+
+            // 🔍 Search icon or button
+            .header__search-open {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                flex: 0 0 auto;
+                width: auto;
+                padding: 0;
+                margin: 0;
+
+                &::before {
+                    display: none; // remove that bottom border line
+                }
+
+                .header__search-open-icon {
+                    margin-left: 0;
+                    font-size: 18px;
+                    vertical-align: middle;
+                }
+            }
+        }
         position: relative;
         background-color: $setting-color-white;
         padding-top: rem(4);
@@ -18,7 +330,7 @@
         }
 
         &__top {
-            background: $setting-color-black;
+            background: #ededed; // $setting-color-black
             color: $setting-color-gray-3;
             margin-bottom: rem(15);
             display: none;
@@ -34,11 +346,22 @@
             padding: 0 rem(16);
         }
 
+        &__custom-dropdown {
+            display: flex;
+            order: 1;
+            padding: 0 rem(16);
+        }
+
         &__select {
-            padding: rem(3) 0 rem(3) rem(10);
+            padding: rem(0) 0 rem(0) rem(0);
             font-size: rem(16);
             line-height: rem(24);
             color: $setting-color-gray-3;
+            height: 100%;
+
+            .select {
+                border-radius: 10px;
+            }
         }
 
         &__row {
@@ -56,7 +379,9 @@
         }
 
         &__navigation-main {
-            position: relative;
+            // position: relative;  // relative
+            display: flex;
+            background-color: #ededed;
             z-index: $setting-zi-header + 1;
         }
 
@@ -94,7 +419,7 @@
             cursor: pointer;
 
             &::before {
-                content: '';
+                // content: '';
                 display: block;
                 width: rem(85);
                 height: rem(25);
@@ -104,7 +429,7 @@
         }
 
         &__search-open-icon {
-            margin-left: rem(10);
+            margin-left: rem(720);
             vertical-align: bottom;
         }
 

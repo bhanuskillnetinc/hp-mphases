@@ -1,0 +1,63 @@
+@mixin shop-ui-wishlist-form($name: '.wishlist-form') {
+    .list-create-wrapper {
+        margin-top: 20px;
+        background-color: #eaeef5;
+        background-size: cover !important;
+        height: 100%;
+        width: 100%;
+        padding: 56px;
+        padding-left: 40px;
+    }
+
+    .list-title {
+        text-align: left;
+        font-size: 28px;
+        line-height: 36px;
+        color: #000;
+        width: 484px;
+        font-weight: 200;
+    }
+
+    .list-input-group {
+        display: flex;
+        width: 100%;
+        margin-top: 10px;
+    }
+
+    .list-input-group > input {
+        width: 25%;
+        padding: 16px 20px;
+        border: 1px solid #d4d4d4;
+        border-right: none;
+        border-radius: 8px 0 0 8px;
+        font-size: 18px;
+        transition: border-color 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+    }
+
+    .list-input-group > input::placeholder {
+        color: #9b9b9b;
+    }
+
+    .list-input-group > input:focus {
+        border-color: #1f4ea3;
+        box-shadow: 0 0 8px rgb(31 78 163 / 30%);
+        outline: none;
+        background: #fff;
+    }
+
+    .wishlist-overview-title {
+        font-size: 36px;
+        text-align: left;
+        font-weight: 700;
+        color: #000;
+        margin-bottom: 16px;
+        line-height: 44px;
+        font-family: Lato, Helvetica, Arial, sans-serif;
+    }
+
+    #{$name} {
+        @content;
+    }
+}
+
+@include shop-ui-wishlist-form();

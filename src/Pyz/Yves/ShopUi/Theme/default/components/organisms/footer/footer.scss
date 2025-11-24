@@ -2,29 +2,262 @@
     #{$name} {
         $footer-subscription-width: rem(202);
         border-top: rem(1) solid $setting-color-gray-3;
+        background-color: #e8e8e8;
+
+        // Contact Row - Email, Social, Country
+        &__contact-row {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: rem(30);
+
+            @include helper-breakpoint-media-min($md-min) {
+                grid-template-columns: repeat(3, 1fr);
+                gap: rem(40);
+                padding: rem(50) rem(40);
+            }
+
+            @include helper-breakpoint-media-min($lg-min) {
+                padding: rem(60) rem(80);
+                gap: rem(60);
+            }
+        }
+
+        // Contact Column Base
+        &__contact-column {
+            display: flex;
+            flex-direction: column;
+
+            &--email {
+                justify-content: flex-start;
+            }
+
+            &--social {
+                justify-content: center;
+                align-items: center;
+            }
+
+            &--country {
+                justify-content: flex-start;
+
+                @include helper-breakpoint-media-min($md-min) {
+                    align-items: flex-end;
+                }
+            }
+        }
+
+        // Email Subscription Section
+        &__contact-title {
+            font: fw(regular) rem(16) / rem(24) $setting-font-family;
+            color: #333333;
+            margin: 0 0 rem(16);
+
+            @include helper-breakpoint-media-min($md-min) {
+                font-size: rem(14);
+                line-height: rem(20);
+            }
+        }
+
+        &__email-form {
+            width: 100%;
+            max-width: rem(400);
+        }
+
+        &__email-input-wrapper {
+            position: relative;
+            display: flex;
+            align-items: center;
+            background-color: #ffffff;
+            border: rem(1) solid #dddddd;
+            border-radius: rem(4);
+            overflow: hidden;
+            transition: border-color 0.3s ease;
+
+            &:focus-within {
+                border-color: #0066cc;
+            }
+        }
+
+        &__email-input {
+            flex: 1;
+            padding: rem(12) rem(16);
+            border: none;
+            outline: none;
+            font: fw(regular) rem(14) / rem(20) $setting-font-family;
+            color: #333333;
+            background: transparent;
+
+            &::placeholder {
+                color: #999999;
+            }
+        }
+
+        &__email-submit {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: rem(12) rem(16);
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+
+            &:hover {
+                transform: translateX(rem(3));
+            }
+
+            &:focus {
+                outline: rem(2) solid #0066cc;
+                outline-offset: rem(-2);
+            }
+        }
+
+        &__email-icon {
+            width: rem(20);
+            height: rem(20);
+            color: #333333;
+        }
+
+        // Social Icons Section
+        &__social-list {
+            display: flex;
+            gap: rem(16);
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        &__social-item {
+            margin: 0;
+        }
+
+        &__social-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: rem(40);
+            height: rem(40);
+            border-radius: 50%;
+            transition: all 0.3s ease;
+
+            svg {
+                width: rem(20);
+                height: rem(20);
+            }
+
+            &--facebook {
+                background-color: #1877f2;
+                color: #ffffff;
+
+                &:hover {
+                    background-color: darken(#1877f2, 10%);
+                    transform: translateY(rem(-2));
+                }
+            }
+
+            &--twitter {
+                background-color: #1da1f2;
+                color: #ffffff;
+
+                &:hover {
+                    background-color: darken(#1da1f2, 10%);
+                    transform: translateY(rem(-2));
+                }
+            }
+
+            &--linkedin {
+                background-color: #0077b5;
+                color: #ffffff;
+
+                &:hover {
+                    background-color: darken(#0077b5, 10%);
+                    transform: translateY(rem(-2));
+                }
+            }
+
+            &--youtube {
+                background-color: #ff0000;
+                color: #ffffff;
+
+                &:hover {
+                    background-color: darken(#ff0000, 10%);
+                    transform: translateY(rem(-2));
+                }
+            }
+
+            &--instagram {
+                background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+                color: #ffffff;
+
+                &:hover {
+                    transform: translateY(rem(-2));
+                    filter: brightness(1.1);
+                }
+            }
+        }
+
+        // Country Selector Section
+        &__country-label {
+            font: fw(regular) rem(14) / rem(20) $setting-font-family;
+            color: #333333;
+            margin: 0 0 rem(12);
+            display: block;
+        }
+
+        &__country-selector-wrapper {
+            position: relative;
+            width: 100%;
+            max-width: rem(280);
+        }
+
+        &__country-select {
+            width: 100%;
+            padding: rem(12) rem(40) rem(12) rem(16);
+            border: rem(1) solid #dddddd;
+            border-radius: rem(4);
+            background-color: #ffffff;
+            font: fw(regular) rem(14) / rem(20) $setting-font-family;
+            color: #333333;
+            cursor: pointer;
+            appearance: none;
+            outline: none;
+            transition: border-color 0.3s ease;
+
+            &:hover {
+                border-color: #999999;
+            }
+
+            &:focus {
+                border-color: #0066cc;
+            }
+        }
+
+        &__country-icon {
+            position: absolute;
+            right: rem(12);
+            top: 50%;
+            transform: translateY(-50%);
+            width: rem(20);
+            height: rem(20);
+            color: #333333;
+            pointer-events: none;
+        }
 
         &__top {
             display: flex;
-            justify-content: space-between;
+            justify-content: center;
             flex-wrap: wrap;
-            margin: 0 rem(16);
-            padding: rem(30) 0 0;
 
             @include helper-breakpoint-media-min($md-min) {
                 border-bottom: rem(1) dotted $setting-color-gray-3;
             }
 
             @include helper-breakpoint-media-min($xl-min) {
-                padding: rem(92) 0 rem(70);
+                // padding: rem(92) 0 rem(70);
             }
         }
 
         &__subscription {
             width: 100%;
-
-            @include helper-breakpoint-media-min($xl-min) {
-                max-width: #{$footer-subscription-width};
-            }
         }
 
         &__logo-section {
@@ -73,7 +306,7 @@
 
         &__bottom {
             margin: rem(16) rem(16) 0;
-            justify-content: space-between;
+            justify-content: center;
             padding: 0 0 rem(50);
 
             @include helper-breakpoint-media-min($xl-min) {
@@ -131,6 +364,88 @@
             @include helper-breakpoint-media-min($xl-min) {
                 max-width: calc(100% - #{$footer-subscription-width});
                 padding-left: 9%;
+            }
+        }
+
+        // Bottom Legal Section
+        &__legal-section {
+            padding: rem(24) rem(16);
+            margin-top: rem(40);
+
+            @include helper-breakpoint-media-min($md-min) {
+                padding: rem(24) rem(40);
+            }
+
+            @include helper-breakpoint-media-min($lg-min) {
+                padding: rem(30) rem(80);
+            }
+        }
+
+        &__legal-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            gap: rem(16);
+
+            @include helper-breakpoint-media-min($md-min) {
+                gap: rem(20);
+            }
+        }
+
+        &__copyright {
+            font: fw(regular) rem(14) / rem(20) $setting-font-family;
+            color: #333333;
+            margin: 0;
+
+            @include helper-breakpoint-media-min($md-min) {
+                font-size: rem(13);
+                line-height: rem(18);
+            }
+        }
+
+        &__legal-nav {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+            gap: rem(8) rem(12);
+
+            @include helper-breakpoint-media-min($md-min) {
+                gap: rem(6) rem(10);
+            }
+        }
+
+        &__legal-link {
+            font: fw(regular) rem(13) / rem(18) $setting-font-family;
+            color: #333333;
+            text-decoration: none;
+            transition: color 0.3s ease;
+
+            @include helper-breakpoint-media-min($md-min) {
+                font-size: rem(12);
+                line-height: rem(16);
+            }
+
+            &:hover {
+                color: #0066cc;
+                text-decoration: underline;
+            }
+
+            &:focus {
+                outline: rem(2) solid #0066cc;
+                outline-offset: rem(2);
+            }
+        }
+
+        &__legal-separator {
+            font: fw(regular) rem(13) / rem(18) $setting-font-family;
+            color: #999999;
+            user-select: none;
+
+            @include helper-breakpoint-media-min($md-min) {
+                font-size: rem(12);
+                line-height: rem(16);
             }
         }
     }

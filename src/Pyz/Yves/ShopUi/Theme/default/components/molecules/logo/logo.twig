@@ -4,7 +4,8 @@
 {% block body %}
     <a href="{{ data.url }}" class="{{ config.name }}__link">
         {% if attributes.src is empty %}
-            <svg class="{{ config.name }}__image" viewBox="0 0 209 65">
+        <img src="https://p3-ofp.static.pub/fes/cms/2023/03/22/8hjmcte754uauw07ypikjkjtx0m5ib450914.svg" data-tkey="header.shared.logo.homepage" alt="">
+            {# <svg class="{{ config.name }}__image" viewBox="0 0 209 65">
                 <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
                     <g transform="translate(-616.000000, -38.000000)" fill-rule="nonzero">
                         <g transform="translate(616.000000, 38.000000)">
@@ -47,7 +48,7 @@
                         </g>
                     </g>
                 </g>
-            </svg>
+            </svg> #}
         {% else %}
             <img class="{{ config.name }}__image" {{ _self.renderAttributes(attributes) }}>
         {% endif %}

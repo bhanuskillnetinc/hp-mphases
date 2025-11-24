@@ -1043,13 +1043,13 @@ customer.account.wishlist.overview.sku,Sku,de_DE
 customer.account.wishlist.overview.name,Name,de_DE
 customer.account.wishlist.overview.price,Preis,de_DE
 customer.account.wishlist.overview.variant,Produktvariante,de_DE
-customer.account.wishlist.overview.title,Manage wishlists,en_US
+customer.account.wishlist.overview.title,My Wish List,en_US
 customer.account.wishlist.overview.title,Wunschliste verwalten,de_DE
 customer.account.wishlist.overview.empty,You do not have any lists yet.,en_US
 customer.account.wishlist.overview.empty,Du hast noch keine Wunschlisten.,de_DE
 customer.account.wishlist.overview.enter_name,Enter name here,en_US
 customer.account.wishlist.overview.enter_name,Name hier eingeben,de_DE
-customer.account.wishlist.overview.add_new,Add new wishlist,en_US
+customer.account.wishlist.overview.add_new,Create a List,en_US
 customer.account.wishlist.overview.add_new,Neue Liste hinzufügen,de_DE
 customer.account.wishlist.overview.item_count,# of items,en_US
 customer.account.wishlist.overview.item_count,# Produkte,de_DE
@@ -3576,3 +3576,17 @@ sales_order_amendment_oms.mail.footer.text.line_2,Dein Spryker Shop,de_DE
 sales_order_amendment_oms.mail.footer.text.line_2,Your Spryker Shop,en_US
 sales_order_amendment_oms.error.apply_order_amendment_draft_failed,We could not process your order edit.,en_US
 sales_order_amendment_oms.error.apply_order_amendment_draft_failed,Ihre Bestelländerung konnte nicht bearbeitet werden.,de_DE
+footer.copyright,© 2025 HP. All rights reserved,en_US
+footer.copyright,© 2025 HP. All rights reserved,de_DE
+footer.legal.privacy.text,Privacy,en_US
+footer.legal.privacy.text,Privacy,de_DE
+footer.legal.sitemap.text,Site Map,en_US
+footer.legal.sitemap.text,Site Map,de_DE
+footer.legal.terms.text,Terms Of Use,en_US
+footer.legal.terms.text,Terms Of Use,de_DE
+footer.legal.submission.text,External Submission Policy,en_US
+footer.legal.submission.text,External Submission Policy,de_DE
+footer.legal.sales.text,Sales Terms and Conditions,en_US
+footer.legal.sales.text,Sales Terms and Conditions,de_DE
+footer.legal.trafficking.text,Anti-Slavery and Human Trafficking Statement,en_US
+footer.legal.trafficking.text,Anti-Slavery and Human Trafficking Statement,de_DE

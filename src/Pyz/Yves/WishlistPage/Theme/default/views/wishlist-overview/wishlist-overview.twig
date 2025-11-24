@@ -1,38 +1,35 @@
-{% extends template('page-layout-wishlist', 'WishlistPage') %}
+{% extends template('page-layout-main', 'ShopUi') %}
 
 {% define data = {
     wishlists: _view.wishlistCollection.wishlists,
     wishlistForm: _view.wishlistForm,
     wishlistDeleteFormClone: _view.wishlistDeleteFormCloner,
 } %}
+{% block pageInfo %}{% endblock %}
+{% block content %}
+	<div class="box">
+		<div class="wishlist-overview-title" aria-label="{{ 'customer.account.wishlist.overview.title' | trans}}" role="heading" aria-level="1" style="" t-k="Lists" data-tkey="Lists">{{ 'customer.account.wishlist.overview.title' | trans}}</div>
 
-{% block customerContent %}
-    <div class="box">
-        {% include molecule('title-box', 'CustomerPage') with {
-            data: {
-                title: 'customer.account.wishlist.overview.title' | trans,
-            },
-        } only %}
 
-        {% include molecule('add-wishlist', 'WishlistPage') with {
+		{% include molecule('add-wishlist', 'WishlistPage') with {
             data: {
                 wishlistForm: data.wishlistForm,
             },
         }  only %}
-    </div>
+	</div>
 
-    <div class="box">
-        {% if data.wishlists is empty %}
-            <div class="text-center">
-                <span class="title title--h6">{{ 'customer.account.wishlist.overview.empty' | trans }}</span>
-            </div>
-        {% else %}
-            {% include molecule('wishlist-overview-table', 'WishlistPage') with {
+	<div class="box">
+		{% if data.wishlists is empty %}
+			<div class="text-center">
+				<span class="title title--h6">{{ 'customer.account.wishlist.overview.empty' | trans }}</span>
+			</div>
+		{% else %}
+			{% include molecule('wishlist-overview-table', 'WishlistPage') with {
                 data: {
                     wishlists: data.wishlists,
                     wishlistDeleteFormClone: data.wishlistDeleteFormClone,
                 },
             } only %}
-        {% endif %}
-    </div>
+		{% endif %}
+	</div>
 {% endblock %}
