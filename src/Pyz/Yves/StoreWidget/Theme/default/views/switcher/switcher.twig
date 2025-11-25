@@ -6,28 +6,16 @@
 } %}
 
 {% block body %}
-    <form method="GET" action="/">
-        {% set options = [] %}
+	<form id="store-form" method="GET" action="{{ data.storeUrls ? '' : '/' }}">
+		<select onchange="" name="_store" id="store-selector" class="footer__country-select {{ data.additionalClassName }}">
+            {% for storeName in data.storeNames %}
+				<option {% if storeName == data.currentStoreName %} selected {% endif %} value="{{ storeName }}">{{ storeName }}</option>
+			{% endfor %}
+		</select>
+		<svg class="footer__country-icon" viewbox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+			<path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+		</svg>
+	</form>
 
-        {% for storeName in data.storeNames %}
-            {% set options = options | merge([{
-                label: 'store_widget.switcher.store' | trans ~ ' ' ~ storeName,
-                value: storeName,
-                selected: storeName == data.currentStoreName,
-            }]) %}
-        {% endfor %}
-
-        {% include molecule('custom-select') with {
-            modifiers: data.additionalModifiers,
-            data: {
-                options: options,
-            },
-            attributes: {
-                name: '_store',
-                'config-theme': 'secondary',
-                'additional-class-name': data.additionalClassName,
-                'data-form-submitter': true,
-            },
-        } only %}
-    </form>
+	
 {% endblock %}

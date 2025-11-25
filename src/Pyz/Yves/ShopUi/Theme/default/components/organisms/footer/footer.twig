@@ -85,20 +85,10 @@
 				<label for="country-selector" class="{{ config.name }}__country-label">
 					{{- 'Select Country / Region' | trans({}, 'messages', 'en_US') | default('Select Country / Region:') -}}
 				</label>
-
+				
 				<div class="{{ config.name }}__country-selector-wrapper">
-					<select id="country-selector" class="{{ config.name }}__country-select">
-						<option value="IN" selected>🇮🇳 INDIA</option>
-						<option value="US">🇺🇸 United States</option>
-						<option value="GB">🇬🇧 United Kingdom</option>
-						<option value="DE">🇩🇪 Germany</option>
-						<option value="FR">🇫🇷 France</option>
-						<option value="CA">🇨🇦 Canada</option>
-						<option value="AU">🇦🇺 Australia</option>
-					</select>
-					<svg class="{{ config.name }}__country-icon" viewbox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-						<path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-					</svg>
+					{% widget 'StoreSwitcher' %}
+					{% endwidget %}
 				</div>
 			</div>
 		</div>
