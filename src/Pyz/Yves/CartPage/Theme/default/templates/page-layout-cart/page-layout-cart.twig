@@ -30,7 +30,7 @@
             <h6 class="spacing-top spacing-top--bigger">{{ 'cart.empty' | trans }}</h6>
         </div>
     {% else %}
-        <div class="grid spacing-x spacing-x--big">
+        <div class="grid">
             <div class="col col--sm-12 col--lg-8">
                 <div class="page-layout-cart__col page-layout-cart__col--content">
                     <div class="cart-box grid grid--middle grid--justify">
@@ -76,7 +76,14 @@
             <div class="col col--sm-12 col--lg-4">
                 <div class="page-layout-cart__col page-layout-cart__col--sidebar">
                     <h3 class="cart-box">{{ 'cart.title_sidebar' | trans }}</h3>
-
+                    {% include molecule('cart-summary', 'CartPage') with {
+                        data: {
+                            cart: data.cart,
+                            isQuoteValid: data.isQuoteValid,
+                            isQuoteEditable: data.isQuoteEditable,
+                            ajaxTriggerAttribute: ajaxTriggerAttribute,
+                        },
+                    } only %}
                     <div class="cart-box cart-box--voucher cart-box--reset-spacing">
                         {% if not is_granted('IS_AUTHENTICATED_FULLY') or can('WriteSharedCartPermissionPlugin', data.cart.idQuote) %}
                              {% widget 'CartCodeFormWidget' args [data.cart] with {
@@ -97,14 +104,7 @@
                             {% endwidget %}
                         {% endif %}
                     </div>
-                    {% include molecule('cart-summary', 'CartPage') with {
-                        data: {
-                            cart: data.cart,
-                            isQuoteValid: data.isQuoteValid,
-                            isQuoteEditable: data.isQuoteEditable,
-                            ajaxTriggerAttribute: ajaxTriggerAttribute,
-                        },
-                    } only %}
+                    
                 </div>
             </div>
         </div>

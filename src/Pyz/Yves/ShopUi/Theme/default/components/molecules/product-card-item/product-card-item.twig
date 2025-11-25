@@ -1,3 +1,9 @@
+{# 
+    Template: src/Pyz/Yves/CartPage/Theme/default/components/molecules/product-card-item/product-card-item.twig 
+    
+    Enhanced cart item component with modern UI design
+#}
+
 {% extends model('component') %}
 {% import _self as component %}
 
@@ -24,60 +30,122 @@
 
 {% block body %}
     <div class="{{ component.renderClass(config.name ~ '__box', modifiers) }} {{ productItemBox }}">
-        <div class="grid {{ data.additionalContainerClass }}">
+    {# Header: Title and Price #}
+        <div class="{{ config.name }}__header">
+            <div class="{{ config.name }}__info">
+                {% block title %}
+                    {% set quote = data.cart is defined and data.cart is not empty ? data.cart : null %}
+                    {% if data.productItem.url and widgetGlobalExists('OrderAmendmentItemLinkWidget') %}
+                        {% widget 'OrderAmendmentItemLinkWidget' args [data.productItem.url, data.productItem.name, quote, data.productItem] only %}{% endwidget %}
+                    {% else %}
+                        <a href="{{ functionExists('generatePath') ? generatePath(data.productItem.url) : data.productItem.url }}" 
+                            class="{{ component.renderClass(config.name ~ '__title', modifiers) }}">
+                            <h1>{{ data.productItem.name }}</h1>
+                        </a>
+                    {% endif %}
+                {% endblock %}
+
+                {# SKU / Part Number #}
+                {% if data.productItem.sku is defined and data.productItem.sku %}
+                    <p class="{{ config.name }}__part-number">
+                        {{ 'product.attribute.sku' | trans }}: 
+                        <span class="{{ config.name }}__part-number-value">{{ data.productItem.sku }}</span>
+                    </p>
+                {% endif %}
+
+            </div>
+
+            {# Price Section #}
+            <div class="{{ config.name }}__price-section">
+                {% block price %}
+                    {% set price = data.productItem.unitPrice is defined ? data.productItem.unitPrice : data.productItem.price %}
+                    {% set productItemSubTotal = data.productItem.quantity is not empty ? data.productItem.quantity * price : price %}
+
+                    {% if can('SeePricePermissionPlugin') %}
+                        <div class="{{ config.name }}__price-wrapper">
+                            {% include molecule('money-price') with {
+                                modifiers: ['large'],
+                                class: component.renderClass(config.name ~ '__price', modifiers),
+                                data: {
+                                    amount: productItemSubTotal | default(null),
+                                    originalAmount: data.productItem.prices.ORIGINAL is not defined or data.productItem.prices.ORIGINAL is empty ? null : data.productItem.prices.ORIGINAL
+                                },
+                            } only %}
+                            <span class="{{ config.name }}__price-note">
+                                {{ 'cart.item.price_note' | trans }}
+                            </span>
+                        </div>
+
+                        {# Savings Display #}
+                        {% if data.productItem.prices.ORIGINAL is defined and data.productItem.prices.ORIGINAL > productItemSubTotal %}
+                            {% set savings = data.productItem.prices.ORIGINAL - productItemSubTotal %}
+                            <div class="{{ config.name }}__savings">
+                                {{ 'cart.item.savings' | trans }}: 
+                                <span class="{{ config.name }}__savings-amount">
+                                    {% include atom('formatted-money-price') with {
+                                        data: {
+                                            amount: savings,
+                                        },
+                                    } only %}
+                                </span>
+                            </div>
+                        {% endif %}
+                    {% else %}
+                        <span class="{{ config.name }}__price-restricted">
+                            {{ 'customer.access.cannot_see_price' | trans }}
+                        </span>
+                    {% endif %}
+                {% endblock %}
+            </div>
+        </div>
+        <div class="{{ config.name }}__container">
+            {# Product Image Section #}
             {% block image %}
-                <a href="{{ functionExists('generatePath') ? generatePath(data.productItem.url) : data.productItem.url }}" class="{{ component.renderClass(config.name ~ '__image', modifiers) }} col">
-                    {% include molecule('product-image') with {
-                        data: {
-                            name: data.productItem.name | default,
-                            image: data.productItem.images[0].externalUrlLarge | default(null),
-                        },
-                    } only %}
+                <div class="{{ component.renderClass(config.name ~ '__image-wrapper', modifiers) }}">
+                    <a href="{{ functionExists('generatePath') ? generatePath(data.productItem.url) : data.productItem.url }}" 
+                       class="{{ component.renderClass(config.name ~ '__image-link', modifiers) }}">
+                        {% include molecule('product-image') with {
+                            data: {
+                                name: data.productItem.name | default,
+                                image: data.productItem.images[0].externalUrlLarge | default(null),
+                            },
+                        } only %}
+                    </a>
 
                     {% block labels %}{% endblock %}
                     {% block groups %}{% endblock %}
-                </a>
+                </div>
             {% endblock %}
 
-            <div class="{{ component.renderClass(config.name ~ '__content-wrapper', modifiers) }} col">
+            {# Content Section #}
+            <div class="{{ component.renderClass(config.name ~ '__content-wrapper', modifiers) }}">
                 <div class="{{ component.renderClass(config.name ~ '__content', modifiers) }}">
-                    <div class="grid grid--justify grid--middle" data-qa="product-item-info">
-                        {% block title %}
-                            {% set quote = data.cart is defined and data.cart is not empty ? data.cart : null %}
-                            {% if data.productItem.url and widgetGlobalExists('OrderAmendmentItemLinkWidget') %}
-                                {% widget 'OrderAmendmentItemLinkWidget' args [data.productItem.url, data.productItem.name, quote, data.productItem] only %}{% endwidget %}
-                            {% else %}
-                                <a href="{{ functionExists('generatePath') ? generatePath(data.productItem.url) : data.productItem.url }}" class="{{ component.renderClass(config.name ~ '__title', modifiers) }} col col--lg-8 col--sm-12">
-                                    {{ data.productItem.name }}
-                                </a>
-                            {% endif %}
-                        {% endblock %}
+                    
+                    {% if data.productItem.quantity > 100 or (data.productItem.attributes is defined and data.productItem.attributes.isPopular) %}
+                        <div class="{{ config.name }}__badge">
+                            <svg class="{{ config.name }}__badge-icon" width="16" height="16" viewBox="0 0 24 24" fill="none">
+                                <path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3" 
+                                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            {{ 'cart.item.added_recently' | trans({'%count%': 100}) }}
+                        </div>
+                    {% endif %}
 
-                        {% block price %}
-                            {% set price = data.productItem.unitPrice is defined ? data.productItem.unitPrice : data.productItem.price %}
-                            {% set productItemSubTotal = data.productItem.quantity is not empty ? data.productItem.quantity * price : price %}
-
-                            {% if can('SeePricePermissionPlugin') %}
-                                {% include molecule('money-price') with {
-                                    modifiers: ['small'],
-                                    class: component.renderClass(config.name ~ '__price', modifiers) ~ ' col col--lg-4 col--sm-12',
-                                    data: {
-                                        amount: productItemSubTotal | default(null),
-                                        originalAmount: data.productItem.prices.ORIGINAL is not defined or data.productItem.prices.ORIGINAL is empty ? null : data.productItem.prices.ORIGINAL
-                                    },
-                                } only %}
-                            {% else %}
-                                {{ 'customer.access.cannot_see_price' | trans }}
-                            {% endif %}
-                        {% endblock %}
-                    </div>
+                    {# Shipping Information #}
+                    {% if data.productItem.shipmentDate is defined and data.productItem.shipmentDate %}
+                        <p class="{{ config.name }}__shipping">
+                            {{ 'cart.item.ships_free_by' | trans }}: <strong>{{ data.productItem.shipmentDate | date('D, M d') }}</strong>
+                        </p>
+                    {% endif %}
 
                     {% block soldBy %}
                         {% if widgetGlobalExists('SoldByMerchantWidget') %}
-                            {% widget 'SoldByMerchantWidget' args [data.productItem] only %}{% endwidget %}
+                            <div class="{{ config.name }}__merchant">
+                                {% widget 'SoldByMerchantWidget' args [data.productItem] only %}{% endwidget %}
+                            </div>
                         {% endif %}
                     {% endblock %}
-
+                    {# Product Options and Attributes #}
                     {% if not data.isPromotionItem %}
                         <div class="{{ component.renderClass(config.name ~ '__options', modifiers) }}">
                             {% block options %}
@@ -113,42 +181,79 @@
                                     {% endwidget %}
                                 {% endblock %}
                             {% endblock %}
-
-                            <div class="grid grid--justify grid--gap">
-                                <div class="col">
+                            {# Product Labels #}
+                            {% if data.productItem.labels is defined and data.productItem.labels|length > 0 %}
+                                <div class="{{ config.name }}__labels">
+                                    {% for label in data.productItem.labels %}
+                                        <span class="{{ config.name }}__label {{ config.name }}__label--{{ label.type|default('default') }}">
+                                            {{ label.name }}
+                                        </span>
+                                    {% endfor %}
+                                </div>
+                            {% else %}
+                                <span class="{{ config.name }}__label {{ config.name }}__label--launch">
+                                    {{ 'product.label.latest_launch' | trans }}
+                                </span>
+                            {% endif %}
+                            {# Quantity and Actions #}
+                            <div class="{{ config.name }}__actions">
+                                <div class="{{ config.name }}__quantity-section">
                                     {% block quantity %}
                                         {% if canEditCart %}
-                                            {% widget 'CartChangeQuantityFormWidget' args [data.productItem, not canEditCart] with {
-                                                data: {
-                                                    ajaxTriggerAttribute: data.ajaxTriggerAttribute,
-                                                },
-                                            } only %}
-                                            {% endwidget %}
+                                            <div class="{{ config.name }}__quantity-wrapper">
+                                                {% widget 'CartChangeQuantityFormWidget' args [data.productItem, not canEditCart] with {
+                                                    data: {
+                                                        ajaxTriggerAttribute: data.ajaxTriggerAttribute,
+                                                    },
+                                                } only %}
+                                                {% endwidget %}
+                                            </div>
                                         {% else %}
-                                            {{ 'cart.item_quantity' | trans }}: {{ data.productItem.quantity | executeFilterIfExists('formatInt', app.locale) }}
+                                            <div class="{{ config.name }}__quantity-readonly">
+                                                {{ 'cart.item_quantity' | trans }}: {{ data.productItem.quantity | executeFilterIfExists('formatInt', app.locale) }}
+                                            </div>
                                         {% endif %}
                                     {% endblock %}
+
+                                    {% block state %}{% endblock %}
                                 </div>
 
-                                {% block state %}{% endblock %}
-                            </div>
+                                {# Action Links #}
+                                {% if canEditCart %}
+                                    <div class="{{ config.name }}__links">
+                                        {# Save for Later #}
+                                        {% if widgetExists('AddToWishlistWidget') %}
+                                            <button type="button" 
+                                                    class="{{ config.name }}__link"
+                                                    data-save-for-later
+                                                    data-sku="{{ data.productItem.sku }}">
+                                                {{ 'wishlist.add_to_wishlist' | trans }}
+                                            </button>
+                                            <span class="{{ config.name }}__separator">|</span>
+                                        {% endif %}
 
-                            {% if canEditCart %}
-                                {% widget 'RemoveFromCartFormWidget' args [data.productItem, random()] with {
-                                    data: {
-                                        ajaxTriggerAttribute: data.ajaxTriggerAttribute,
-                                    },
-                                    embed: {
-                                        ajaxTriggerAttribute: data.ajaxTriggerAttribute,
-                                    },
-                                }  only %}
-                                    {% block embeddedData %}
-                                        <button {{ embed.ajaxTriggerAttribute }} class="link link--darkest link--edit" data-init-single-click {{ qa('add-to-cart-button') }}>
-                                            {{- 'remove' | trans -}}
-                                        </button>
-                                    {% endblock %}
-                                {% endwidget %}
-                            {% endif %}
+                                        {# Remove from Cart #}
+                                        {% widget 'RemoveFromCartFormWidget' args [data.productItem, random()] with {
+                                            data: {
+                                                ajaxTriggerAttribute: data.ajaxTriggerAttribute,
+                                            },
+                                            embed: {
+                                                ajaxTriggerAttribute: data.ajaxTriggerAttribute,
+                                                componentName: config.name,
+                                            },
+                                        }  only %}
+                                            {% block embeddedData %}
+                                                <button {{ embed.ajaxTriggerAttribute }} 
+                                                        class="{{ embed.componentName }}__link {{ embed.componentName }}__link--remove" 
+                                                        data-init-single-click 
+                                                        {{ qa('remove-from-cart-button') }}>
+                                                    {{ 'cart.remove' | trans }}
+                                                </button>
+                                            {% endblock %}
+                                        {% endwidget %}
+                                    </div>
+                                {% endif %}
+                            </div>
                         </div>
                     {% endif %}
 
@@ -160,13 +265,15 @@
             </div>
         </div>
 
+        {# Product Bundles #}
         {% block bundles %}
             {% widget 'ProductBundleCartItemsListWidget' args [data.productItem, data.product] only %}{% endwidget %}
         {% endblock %}
 
+        {# Product Options Summary #}
         {% block summary %}
             {% if data.productItem.productOptions is defined and data.productItem.productOptions is not empty %}
-                <div class="grid grid--right">
+                <div class="{{ config.name }}__summary">
                     {% include molecule('product-item-summary') with {
                         class: 'col',
                         modifiers: data.productOptionsModifiers,

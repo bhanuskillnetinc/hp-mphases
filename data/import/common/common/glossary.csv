@@ -3590,3 +3590,17 @@ footer.legal.sales.text,Sales Terms and Conditions,en_US
 footer.legal.sales.text,Sales Terms and Conditions,de_DE
 footer.legal.trafficking.text,Anti-Slavery and Human Trafficking Statement,en_US
 footer.legal.trafficking.text,Anti-Slavery and Human Trafficking Statement,de_DE
+cart.item.added_recently,"Added to cart <strong>%count%+</strong> times recently",en_US
+cart.item.added_recently,"Vor kurzem <strong>%count%+</strong> mal in den Warenkorb gelegt",de_DE
+cart.item.ships_free_by,"Ships FREE by",en_US
+cart.item.ships_free_by,"Kostenloser Versand bis",de_DE
+cart.item.price_note,"(Incl. Shipping & all Taxes)",en_US
+cart.item.price_note,"(Inkl. Versand & alle Steuern)",de_DE
+cart.item.savings,"Savings",en_US
+cart.item.savings,"Ersparnis",de_DE
+product.label.latest_launch,"READY TO SHIP",en_US
+product.label.latest_launch,"NEUESTE EINFÜHRUNG",de_DE
+product.attribute.sku,"Part Number",en_US
+product.attribute.sku,"Artikelnummer",de_DE
+cart.remove,"Remove",en_US
+cart.remove,"Remove",de_DE
