@@ -25,6 +25,124 @@
             padding: 0;
         }
 
+        /* Each menu item */
+        &__nav-item {
+            position: relative;
+            padding-right: 24px;
+        }
+
+        /* Pipe separator */
+        &__nav-item::after {
+            content: '|';
+            position: absolute;
+            right: 8px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #999;
+            font-weight: 300;
+        }
+
+        &__nav-item:last-child::after {
+            content: '';
+        }
+
+        /* Top link */
+        &__nav-link {
+            font-size: 17px;
+            font-weight: 500;
+            color: #3a3a3a;
+            text-decoration: none;
+            padding-bottom: 6px;
+            display: inline-block;
+            transition: color 0.2s ease;
+            position: relative;
+        }
+
+        &__nav-link:hover {
+            color: #000;
+        }
+
+        &__nav-link:hover::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -2px;
+            width: 100%;
+            height: 2px;
+            background: #c00;
+        }
+
+        /* ===============================
+   MEGA MENU
+   =============================== */
+        &__mega-menu {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            width: 900px;
+            padding: 24px;
+            background: #fff;
+            border-top: 3px solid #c00;
+            border-radius: 0 0 8px 8px;
+            box-shadow: 0 8px 18px rgb(0 0 0 / 12%);
+            display: none;
+            z-index: 999;
+        }
+
+        /* Show on hover */
+        &__nav-item:hover &__mega-menu {
+            display: block;
+        }
+
+        /* Layout of columns */
+        &__mega-inner {
+            display: flex;
+            gap: 32px;
+        }
+
+        /* One column */
+        &__mega-col {
+            flex: 1;
+        }
+
+        /* Wide column */
+        &__mega-col--wide {
+            flex: 2;
+        }
+
+        /* Column title */
+        &__mega-col-title {
+            margin: 0 0 8px;
+            font-weight: 700;
+            font-size: 15px;
+        }
+
+        /* List */
+        &__mega-list {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        /* Links in mega menu */
+        &__mega-link {
+            display: block;
+            padding: 6px 0;
+            color: #222;
+            text-decoration: none;
+            transition: 0.2s;
+        }
+
+        &__mega-link:hover {
+            color: #c00;
+        }
+
+        /* Images */
+        &__mega-img {
+            width: 100%;
+            border-radius: 8px;
+        }
+
         &__lenovo-nav__left li a,
         &__lenovo-nav__right li a {
             font-size: 17px;
