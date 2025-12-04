@@ -1,0 +1,89 @@
+{% extends model('component') %}
+
+{% define config = {
+    name: 'pdp-sticky-header',
+} %}
+
+{% block body %}
+	<div class="{{ config.name }} js-pdp-sticky-header" id="js-pdp-sticky-header">
+		<div class="{{ config.name ~ '__content' }}">
+
+			<div class="{{ config.name ~ '__left' }}">
+				<h3 class="{{ config.name ~ '__name' }}">{{ data.product.name }}</h3>
+			</div>
+			<div class="grid grid-right">
+				<div class="{{ config.name ~ '__price' }} col text-right">
+					{% include molecule('money-price') with {
+                    modifiers: ['pdp'],
+                    data: {
+                        amount: data.product.price,
+                        originalAmount: data.product.prices.ORIGINAL is not defined ? null : data.product.prices.ORIGINAL
+                    }
+                } only %}
+				</div>
+				<div>
+					 {% set isDisabled = not data.product.idProductConcrete or not data.product.available %}
+
+                                            {% if isDisabled %}
+                                                <button class="button button--expand" disabled>{{ 'page.detail.add-to-cart' | trans }}</button>
+                                            {% else %}
+                                                {% widget 'AddToCartFormWidget' args [config, data.product, isDisabled] only %}
+                                                    {% block body %}
+                                                        {% set productSku = data.product.sku %}
+                                                        {% set formAction = path('cart/add', {'sku': productSku}) %}
+                                                        {% set tokenField = data.form._token.vars %}
+
+                                                        {% include molecule('remote-form-submit') with {
+                                                            data: {
+                                                                label: 'page.detail.add-to-cart' | trans,
+                                                                buttonClass: 'button button--expand ' ~ data.config.jsName ~ '__button-add-to-cart',
+                                                                buttonExtraAttributes: {
+                                                                    'data-form-action': formAction,
+                                                                    'data-init-single-click': true,
+                                                                    'data-qa': 'add-to-cart-button',
+                                                                },
+                                                            },
+                                                            attributes: {
+                                                                'form-name': 'addToCartForm_' ~ productSku,
+                                                                'form-action': formAction,
+                                                                'field-name': tokenField.full_name,
+                                                                'field-value': tokenField.value,
+                                                            },
+                                                        } only %}
+                                                    {% endblock %}
+                                                {% endwidget %}
+                                            {% endif %}
+				</div>
+			</div>
+		</div>
+	</div>
+	<script>
+		(function () {
+        const stickyHeader = document.querySelector('.pdp-sticky-header');
+        if (! stickyHeader) {
+        return;
+        }
+
+        let lastScroll = 0;
+
+        window.addEventListener('scroll', function () {
+        const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+
+        if (currentScroll > 650) {
+         //stickyHeader.classList.remove('pdp-sticky-header--hidden');
+        //stickyHeader.classList.add('pdp-sticky-header--visible'); 
+        stickyHeader.style.transform = 'translateY(0)';
+        stickyHeader.style.opacity = '1';
+        } else {
+        stickyHeader.style.transform = 'translateY(-100%)';
+        stickyHeader.style.opacity = '0';
+        } lastScroll = currentScroll;
+        });
+
+        stickyHeader.style.transition = 'transform 0.3s ease, opacity 0.3s ease';
+        stickyHeader.style.transform = 'translateY(-100%)';
+        stickyHeader.style.opacity = '0';
+
+        })();
+	</script>
+{% endblock %}

@@ -16,6 +16,14 @@
 {% block contentClass %} page-layout-main {% endblock %}
 
 {% block content %}
+  {# --- Sticky PDP Header --- #}
+   {% include molecule('pdp-sticky-header', 'ProductDetailPage') with {
+    data: {
+        product: data.product
+    }
+} only %}
+
+
     <div class="container__inner">
         <div class="grid">
             <meta itemprop="name" content="{{ data.product.name }}">
@@ -155,3 +163,4 @@
 
     {{ parent() }}
 {% endblock %}
+
