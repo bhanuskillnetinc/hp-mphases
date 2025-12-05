@@ -4,7 +4,9 @@
     {{ config.jsName }}
 {% endblock %}
 
+{% set isDisabled = isDisabled ?? false %}
 {% block body %}
+{# <pre>{{ dump(data) }}</pre> #}
     <div class="{{ config.name }}__container">
         <div class="{{ config.name }}__image-wrap">
             {% block imageContainer %}
@@ -49,6 +51,11 @@
             <meta class="{{ config.jsName }}__abstract-sku" itemprop="abstractSku" content="{{ data.abstractSku }}">
             <meta class="{{ config.jsName }}__sku" itemprop="sku" content="{{ data.metaSku }}">
         {% endblock %}
+    </div>
+    <div>
+    {% widget 'ComparisonProductTogglerComparisonListWidget' args [data.sku, isDisabled] only %}{% endwidget %}
+
+    {% widget 'ProductListCompareWidget' args [data.product] only %}{% endwidget %}
     </div>
 {% endblock %}
 

@@ -72,6 +72,7 @@
         "spryker-feature/product-approval-process": "^202507.0",
         "spryker-feature/product-barcode": "^202507.0",
         "spryker-feature/product-bundles": "^202507.0",
+        "spryker-feature/product-comparison": "202507.0",
         "spryker-feature/product-groups": "^202507.0",
         "spryker-feature/product-labels": "^202507.0",
         "spryker-feature/product-lists": "^202507.0",

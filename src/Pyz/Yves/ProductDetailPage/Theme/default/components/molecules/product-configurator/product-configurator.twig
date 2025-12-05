@@ -115,6 +115,8 @@
         {% endblock %}
     {% endwidget %}
 
+    {% widget 'ComparisonProductTogglerComparisonListWidget' args [data.product.sku, isDisabled] only %}{% endwidget %}
+
     {% set isProductOffer = data.product.productOfferReference is not empty %}
 
     {% if not isAvailable and isProductConcrete and not isProductOffer %}

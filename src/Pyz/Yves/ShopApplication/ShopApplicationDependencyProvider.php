@@ -9,6 +9,7 @@ declare(strict_types = 1);
 
 namespace Pyz\Yves\ShopApplication;
 
+use Pyz\Yves\ProductListCompareWidget\Widget\ProductListCompareWidget;
 use Pyz\Yves\ProductRelationWidget\Widget\UpSellingProductsWidget;
 use Pyz\Yves\ProductReviewWidget\Widget\ProductDetailPageReviewWidget;
 use Pyz\Yves\ProductSetWidget\Widget\ProductSetIdsWidget;
@@ -87,6 +88,8 @@ use SprykerShop\Yves\ProductBundleWidget\Widget\ProductBundleMultiCartItemsListW
 use SprykerShop\Yves\ProductBundleWidget\Widget\ProductBundleProductDetailPageItemsListWidget;
 use SprykerShop\Yves\ProductCategoryWidget\Widget\ProductBreadcrumbsWithCategoriesWidget;
 use SprykerShop\Yves\ProductCategoryWidget\Widget\ProductSchemaOrgCategoryWidget;
+use SprykerShop\Yves\ProductComparisonWidget\Widget\ComparisonProductTogglerComparisonListWidget;
+use SprykerShop\Yves\ProductComparisonWidget\Widget\LinkToProductComparisonListWidget;
 use SprykerShop\Yves\ProductConfigurationCartWidget\Widget\ProductConfigurationCartItemDisplayWidget;
 use SprykerShop\Yves\ProductConfigurationCartWidget\Widget\ProductConfigurationCartPageButtonWidget;
 use SprykerShop\Yves\ProductConfigurationCartWidget\Widget\ProductConfigurationQuoteValidatorWidget;
@@ -263,6 +266,9 @@ class ShopApplicationDependencyProvider extends SprykerShopApplicationDependency
             OrderAmendmentItemLinkWidget::class,
             UpdateOrderCheckoutSubmitButtonTextWidget::class,
             UpdateOrderCheckoutSuccessTitleWidget::class,
+            ComparisonProductTogglerComparisonListWidget::class,
+            LinkToProductComparisonListWidget::class,
+            ProductListCompareWidget::class,
         ];
     }
 
